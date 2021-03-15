@@ -1,0 +1,47 @@
+
+
+
+<div class="col-md-12">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">List des clients</h3>
+      <a [routerLink]="['/fournisseur/add']" class="btn btn-info pull-right">Ajouter</a>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+
+    <div class="box-body">
+
+      <table *ngIf="fournisseurList" datatable class="table row-border hover">
+        <thead>
+          <tr>
+            <th>nom prenom</th>
+            <th>matricule Fiscale</th>
+            <th>telephone</th>
+            <th>adresse</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of fournisseurList" (click)="showFournisseur(item.id)">
+            <td>{{item.nom}}</td>
+            <td>{{item.matriculeFiscale}}</td>
+            <td>{{item.telephone }}</td>
+            <td>{{item.adresse}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <!-- /.box-body -->
+    <div class="box-footer">
+
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>
+
+
+

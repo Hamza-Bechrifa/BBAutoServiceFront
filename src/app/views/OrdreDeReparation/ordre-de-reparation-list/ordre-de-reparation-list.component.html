@@ -1,0 +1,51 @@
+
+<!--<pre>{{orList| json}}</pre>-->
+
+
+<div class="col-md-12">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">List des Ordre de réparation</h3>
+      <a [routerLink]="['/ordreDeReparation/add']" class="btn btn-info pull-right">Ajouter</a>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+
+    <div class="box-body">
+
+      <table *ngIf="orList" datatable [dtOptions]="dtOptions" class="table row-border hover">
+        <thead>
+          <tr>
+            <th>date</th>
+            <th>client</th>
+            <th>voiture</th>
+            <th>kilometrage</th>
+            <td>totalHt</td>
+            <td>totalTtc</td>
+            <td>resteAPaye</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of orList" (click)="show(item.id)">
+            <td>{{item.dateDocument }}</td>
+            <td>{{item.client}}</td>
+            <td>{{item.voiture}}</td>
+            <td>{{item.kilometrage}}</td>
+            <td>{{item.totalHt}}</td>
+            <td>{{item.totalTtc}}</td>
+            <td>{{item.resteAPaye}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <!-- /.box-body -->
+    <div class="box-footer">
+
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>

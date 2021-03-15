@@ -1,0 +1,56 @@
+
+<div class="col-md-12">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">List des articles</h3>
+      <a [routerLink]="['/article/add']" class="btn btn-info pull-right">Ajouter</a>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+
+    <div class="box-body">
+
+      <table *ngIf="articleList" datatable class="table row-border hover">
+        <thead>
+          <tr>
+            <th>Référence </th>
+            <th>Référence Origine </th>
+            <th>designation </th>
+            <th>Marque </th>
+            <th>prixHt</th>
+            <th>tva</th>
+            <!--<th>fodec</th>
+            <th>marge</th>-->
+            <th>prixPublic</th>
+            <th>stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of articleList" (click)="showArticle(item.id)">
+            <td>{{item.reference}}</td>
+            <td>{{item.referenceOrigine}}</td>
+            <td>{{item.designation}}</td>
+            <td>{{item.marque}}</td>
+            <td>{{item.prixHt | number : '1.3-3'}}</td>
+            <td>{{item.tva }}</td>
+            <td>{{item.prixPublic | number : '1.3-3'}}</td>
+            <td>{{item.stockReel || 0}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <!-- /.box-body -->
+    <div class="box-footer">
+
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>
+
+
+
+

@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="animated fadeIn">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header">
+              <strong>{{'HOME.TITLE' | translate}}</strong>
+            </div>
+            <div class="card-body">
+              <p>{{'HOME.MES'| translate : {username :user?.userName, dateConnection:lastconnection|  date:'	dd/MM/yyyy ' , heureConncetion:lastconnection|  date:'	 hh:mm:ss'}  }}  </p>
+
+              <hr style="margin-top : 70px">
+              <p>{{'HOME.NOM' |translate : {name : user?.firstName} }}  </p>
+              <p>{{'HOME.PRENOM' |translate : {prenom : user?.lastName} }} </p>
+              <p>{{'HOME.EMAIL' |translate : {mail : user?.email} }} </p>
+              <p>{{'HOME.TELEPHONE' |translate : {phone : user?.phoneNumber} }} </p>
+              <hr style="margin-top : 70px">
+              <p>{{'HOME.MESSAGE' |translate}}<a routerLink="/edit-profil">{{'HOME.ICI'|translate}}</a></p>
+              <!-- <p>Nom : {{user?.firstName}}</p>
+   <p>Prénom : {{user?.lastName}}</p>
+
+   <p>E-mail : {{user?.email}} </p>
+   <p>Téléphone : {{user?.phoneNumber}} </p>
+   <hr style="margin-top : 70px">
+   <p>Pour modifier vos informations <a routerLink="/edit-profil">cliquez ici</a></p>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

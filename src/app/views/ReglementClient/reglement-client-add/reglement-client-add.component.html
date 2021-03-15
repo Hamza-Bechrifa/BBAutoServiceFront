@@ -1,0 +1,84 @@
+<!--<p>reglement-client-add works!</p>
+typedocumet{{typeDocument}}
+<br />
+idDocument{{idDocument}}
+<br />
+<pre>
+{{client|json}}
+</pre>
+<pre>
+{{ordreDeReparation|json}}
+</pre>
+
+<pre>
+{{reglementClientForm.value | json}}
+</pre>-->
+
+<div class="col-md-8">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Nouveau Reglement client</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form [formGroup]="reglementClientForm" autocomplete="off" class="form-horizontal">
+      <div class="box-body">
+
+
+
+        <mat-form-field appearance="outline">
+          <mat-label>client</mat-label>
+          <input value="{{client.nomPrenom}}" matInput readonly >
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field appearance="outline">
+          <mat-label>Solde</mat-label>
+          <input value="{{client.solde}}" matInput readonly >
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>montant</mat-label>
+          <input type="number" step="2" matInput formControlName="montant" required placeholder="montant">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-select class="form-control" formControlName="mode">
+            <mat-option value="espece">Espece</mat-option>
+            <mat-option value="cheque">Cheque</mat-option>
+            <mat-option value="retunue">Retunue</mat-option>
+            <mat-option value="remise">Remise</mat-option>
+          </mat-select>
+          <mat-error>fff</mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>Date</mat-label>
+          <input type="date" matInput formControlName="dateReglement" required>
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+
+
+
+
+
+      </div>
+    </form>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <button mat-raised-button class="btn btn-info pull-right" [disabled]="reglementClientForm.invalid" (click)="addReglement()" type="submit">
+        Ajouter
+      </button>
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>
+
+
+

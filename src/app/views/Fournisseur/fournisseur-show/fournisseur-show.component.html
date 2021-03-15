@@ -1,0 +1,81 @@
+<div class="col-md-12" *ngIf="fournisseur">
+  <!-- Custom Tabs (Pulled to the right) -->
+  <div class="nav-tabs-custom">
+    <ul class="nav nav-tabs pull-right">
+      <li class=""><a href="#Mouvements" data-toggle="tab" aria-expanded="false">Mouvements</a></li>
+      <li class="active"><a href="#Detailles" data-toggle="tab" aria-expanded="true">Detailles</a></li>
+
+      <li class="pull-left header"><i class="fa fa-th"></i> Detailles Fournisseur</li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" id="Mouvements">
+
+
+
+        <table *ngIf="Mouvements" datatable class="table row-border hover">
+          <thead>
+            <tr>
+              <th>date</th>
+              <th>id </th>
+              <th>totalTtc </th>
+              <th>typeDocument</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of Mouvements">
+              <td>{{item.date}}</td>
+              <td>{{item.id}}</td>
+              <td>{{item.totalTtc | number : '1.3-3'}}</td>
+              <td>{{item.typeDocument }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+     
+      <!-- /.tab-pane -->
+      <div class="tab-pane active" id="Detailles">
+        <div class="box-body">
+          <mat-form-field appearance="outline">
+            <mat-label>Nom Prénom</mat-label>
+            <input readonly matInput value="{{fournisseur.nom}}" required placeholder="Nom Prenom">
+            <mat-error>ce champ est obligatoire</mat-error>
+          </mat-form-field><br><br>
+          <mat-form-field appearance="outline">
+            <mat-label>CIN/MF</mat-label>
+            <input readonly matInput value="{{fournisseur.matriculeFiscale}}" required placeholder="CIN/MF">
+            <mat-error>ce champ est obligatoire</mat-error>
+          </mat-form-field><br /><br />
+          <mat-form-field appearance="outline">
+            <mat-label>téléphone</mat-label>
+            <input readonly matInput value="{{fournisseur.telephone}}" required placeholder="Telephone">
+            <mat-error>ce champ est obligatoire</mat-error>
+          </mat-form-field><br /><br />
+          <mat-form-field appearance="outline">
+            <mat-label>Adresse</mat-label>
+            <input readonly matInput value="{{fournisseur.adresse}}" required placeholder="Adresse">
+            <mat-error>ce champ est obligatoire</mat-error>
+          </mat-form-field><br><br>
+          <mat-form-field appearance="outline">
+            <mat-label>Solde</mat-label>
+            <input readonly matInput value="{{fournisseur.solde}}" required placeholder="Solde">
+            <mat-error>ce champ est obligatoire</mat-error>
+          </mat-form-field><br><br>
+          <button mat-raised-button class="btn btn-info pull-right" color="primary" (click)="edit()" type="submit">
+            Modifier
+          </button>
+        </div>
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+    <!-- /.tab-content -->
+  </div>
+  <!-- nav-tabs-custom -->
+</div>
+
+
+
+
+
+
+

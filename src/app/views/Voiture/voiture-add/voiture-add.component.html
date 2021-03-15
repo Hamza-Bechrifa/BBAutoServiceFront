@@ -1,0 +1,57 @@
+<div class="col-md-8">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Nouvelle voiture</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form [formGroup]="VoitureForm" autocomplete="off">
+      <div class="box-body">
+        <!--<mat-form-field appearance="outline">-->
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="matricule" required placeholder="matricule">
+          <mat-error>fff</mat-error>
+        </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="type" required placeholder="marque">
+          <mat-error>fff</mat-error>
+        </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="modele" required placeholder="modele">
+          <mat-error>fff</mat-error>
+        </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="dateMiseEnCirculation" required placeholder="dateMiseEnCirculation">
+          <mat-error>fff</mat-error>
+        </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="vin" required placeholder="vin">
+          <mat-error>fff</mat-error>
+        </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="kilometrage" required placeholder="kilometrage">
+          <mat-error>fff</mat-error>
+        </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <mat-select class="form-control" formControlName="client">
+            <mat-option *ngFor="let item of clientList" [value]="item.id">{{item.nomPrenom}}</mat-option>
+          </mat-select>
+          <mat-error>fff</mat-error>
+        </mat-form-field><br><br>
+        </div>
+
+    </form>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <button mat-raised-button color="primary" [disabled]="VoitureForm.invalid" (click)="AjouterVoiture()" type="submit">
+        Ajouter
+      </button>
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>
+
+
+

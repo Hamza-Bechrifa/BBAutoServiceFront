@@ -1,0 +1,41 @@
+<p>voiture-edit works!</p>
+<p>client-add works!</p>
+<form [formGroup]="VoitureForm" autocomplete="off">
+  <br>
+  <!--<mat-form-field appearance="outline">-->
+  <mat-form-field>
+    <input matInput formControlName="matricule" required placeholder="matricule">
+    <mat-error>fff</mat-error>
+  </mat-form-field><br><br>
+  <mat-form-field>
+    <input matInput formControlName="marque" required placeholder="type">
+    <mat-error>fff</mat-error>
+  </mat-form-field><br><br>
+  <mat-form-field>
+    <input matInput formControlName="modele" required placeholder="modele">
+    <mat-error>fff</mat-error>
+  </mat-form-field><br><br>
+  <mat-form-field>
+    <input matInput formControlName="dateMiseEnCirculation" required placeholder="dateMiseEnCirculation">
+    <mat-error>fff</mat-error>
+  </mat-form-field><br><br>
+  <mat-form-field>
+    <input matInput formControlName="vin" required placeholder="vin">
+    <mat-error>fff</mat-error>
+  </mat-form-field><br><br>
+  <mat-form-field>
+    <input matInput formControlName="kilometrage" required placeholder="kilometrage">
+    <mat-error>fff</mat-error>
+  </mat-form-field><br><br>
+  <mat-form-field>
+    <input matInput formControlName="client" required placeholder="client">
+    <mat-error>fff</mat-error>
+  </mat-form-field><br><br>
+
+
+</form>
+
+
+<button mat-raised-button color="primary" [disabled]="VoitureForm.invalid" (click)="ModifierVoiture()" type="submit">
+  Modifier
+</button>

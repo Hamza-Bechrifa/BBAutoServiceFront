@@ -1,0 +1,50 @@
+
+
+
+<div class="col-md-12">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">List des clients</h3>
+      <a [routerLink]="['/client/add']" class="btn btn-info pull-right">Ajouter</a>
+
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+
+    <div class="box-body">
+
+      <table *ngIf="clientList" datatable class="table row-border hover">
+        <thead>
+          <tr>
+            <th>nom prenom</th>
+            <th>Solde</th>
+            <th>cin</th>
+            <th>telephone</th>
+            <th>adresse</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of clientList" (click)="showClient(item.id)">
+            <td>{{item.nomPrenom}}</td>
+            <td>{{item.solde}}</td>
+            <td>{{item.cin}}</td>
+            <td>{{item.telephone }}</td>
+            <td>{{item.adresse}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <!-- /.box-body -->
+    <div class="box-footer">
+
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>
+
+
+

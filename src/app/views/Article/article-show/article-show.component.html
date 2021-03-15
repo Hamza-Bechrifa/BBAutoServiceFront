@@ -1,0 +1,169 @@
+
+<button class="btn btn-primary pull-right" (click)="SetTabToShow('Detailles')">Detailles</button>
+<button class="btn btn-primary pull-right" (click)="SetTabToShow('Ventes')">Ventes</button>
+<button class="btn btn-primary pull-right" (click)="SetTabToShow('Achats')">Achats</button>
+  <div class="tab-pane" id="Ventes" *ngIf="tabToShow == 'Ventes'">
+    <table *ngIf="listeVente" datatable class="table row-border hover">
+      <thead>
+        <tr>
+          <th>date</th>
+          <th>id </th>
+          <th>ordreDeReparation </th>
+          <th>prixHt</th>
+          <th>quantite</th>
+          <th>remise</th>
+          <th>tva</th>
+          <th>totalTtc</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listeVente">
+          <td>{{item.dateDocument}}</td>
+          <td>{{item.id}}</td>
+          <td>{{item.ordreDeReparation}}</td>
+          <td>{{item.prixHt | number : '1.3-3'}}</td>
+          <td>{{item.quantite }}</td>
+          <td>{{item.remise}}</td>
+          <td>{{item.tva }}</td>
+          <td>{{item.totalTtc | number : '1.3-3'}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <!-- /.tab-pane -->
+  <div class="tab-pane" id="Achats" *ngIf="tabToShow == 'Achats'">
+
+    <table *ngIf="listeAchat" datatable class="table row-border hover">
+      <thead>
+        <tr>
+          <th>date</th>
+          <th>id </th>
+          <th>bonDeReception </th>
+          <th>prixHt</th>
+          <th>quantite</th>
+          <th>remise</th>
+          <th>tva</th>
+          <th>totalTtc</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listeAchat">
+          <td>{{item.dateDocument}}</td>
+          <td>{{item.id}}</td>
+          <td>{{item.bonDeReception}}</td>
+          <td>{{item.prixHt | number : '1.3-3'}}</td>
+          <td>{{item.quantite }}</td>
+          <td>{{item.remise}}</td>
+          <td>{{item.tva }}</td>
+          <td>{{item.totalTtc | number : '1.3-3'}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+  <!-- /.tab-pane -->
+  <div class="tab-pane active" id="Detailles" *ngIf="tabToShow == 'Detailles'">
+    <div class="box-body">
+
+
+      <!--<mat-form-field appearance="outline">-->
+
+      <mat-form-field appearance="outline">
+        <mat-label>Reference</mat-label>
+        <input readonly matInput value="{{article.reference}}" required placeholder="reference">
+        <mat-error></mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Reference Origine</mat-label>
+        <input readonly matInput value="{{article.referenceOrigine}}" required placeholder="reference">
+        <mat-error></mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline" [style.width.px]=327>
+        <mat-label>designation</mat-label>
+        <textarea readonly matInput value="{{article.designation}}" required placeholder="designation"></textarea>
+        <mat-error></mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Marque</mat-label>
+        <input readonly matInput value="{{article.marque}}">
+        <mat-error></mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Emplacement</mat-label>
+        <input readonly matInput value="{{article.emplacement}}">
+        <mat-error></mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Prix Ht</mat-label>
+        <input readonly type="number" step="any" matInput value="{{article.prixHt}}" required placeholder="Prix Ht">
+        <mat-error></mat-error>
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;
+      <mat-form-field appearance="outline">
+        <mat-label>TVA %</mat-label>
+        <input readonly type="number" step="any" matInput value="{{article.tva}}" required placeholder="TVA %">
+        <mat-error></mat-error>
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;
+      <mat-form-field appearance="outline">
+        <mat-label>FODEC %</mat-label>
+        <input readonly type="number" step="any" matInput value="{{article.fodec}}" required placeholder="FODEC %">
+        <mat-error></mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>TTC</mat-label>
+        <input readonly type="number" step="any" matInput value="{{article.prixTtc}}" required placeholder="TTC">
+        <mat-error></mat-error>
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;
+      <mat-form-field appearance="outline">
+        <mat-label>Marge %</mat-label>
+        <input readonly type="number" step="any" matInput value="{{article.marge}}" required placeholder="MARGE %">
+        <mat-error></mat-error>
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;
+      <mat-form-field appearance="outline">
+        <mat-label>Prix Public</mat-label>
+        <input readonly type="number" step="any" matInput value="{{article.prixPublic}}" required placeholder="Prix public">
+        <mat-error></mat-error>
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;
+      <mat-form-field appearance="outline">
+        <mat-label>stock initial</mat-label>
+        <input readonly matInput value="{{article.stockInitial}}" required placeholder="stock initial">
+        <mat-error></mat-error>
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;
+      <mat-form-field appearance="outline">
+        <mat-label>stock alerte</mat-label>
+        <input readonly matInput value="{{article.stockAlerte}}" required placeholder="stock alerte">
+        <mat-error></mat-error>
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;
+      <mat-form-field appearance="outline">
+        <mat-label>stock stockReel</mat-label>
+        <input readonly matInput value="{{article.stockReel}}" required placeholder="stock stockReel">
+        <mat-error></mat-error>
+      </mat-form-field>
+
+      <br />
+      <button class="btn btn-primary pull-right" (click)="edit()">modifier</button>
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+

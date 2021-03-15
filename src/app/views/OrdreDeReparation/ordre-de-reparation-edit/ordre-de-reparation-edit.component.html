@@ -1,0 +1,104 @@
+<p>ordre-de-reparation-edit works!</p>
+<pre>{{obj|json}}</pre>
+<pre>{{formData.value|json}}</pre>
+<form [formGroup]="formData" autocomplete="off">
+  <br>
+  <!--<mat-form-field appearance="outline">-->
+  <mat-form-field>
+    <input matInput formControlName="client"  placeholder="client">
+    <mat-error>fff</mat-error>
+  </mat-form-field><br><br>
+  <mat-form-field>
+    <input matInput formControlName="voiture"  placeholder="voiture">
+    <mat-error>fff</mat-error>
+  </mat-form-field><br><br>
+  <mat-form-field>
+    <input type="date" matInput formControlName="dateDocument" required placeholder="date">
+    <mat-error>fff</mat-error>
+  </mat-form-field><br><br>
+  <mat-form-field>
+    <input matInput formControlName="kilometrage" required placeholder="kilometrage">
+    <mat-error>fff</mat-error>
+  </mat-form-field><br><br>
+  <mat-form-field>
+    <input matInput formControlName="commentaireInterne" placeholder="commentaireInterne">
+    <mat-error>fff</mat-error>
+  </mat-form-field><br><br>
+  <mat-form-field>
+    <input matInput formControlName="commentaireExterne" placeholder="commentaireExterne">
+    <mat-error>fff</mat-error>
+  </mat-form-field><br><br>
+
+  <div formArrayName="detailleOr">
+
+    <table class="table table-bordered table-hover" id="tab_logic">
+      <thead>
+        <tr>
+          <th class="text-center">
+            #
+          </th>
+          <th class="text-center">
+            Name
+          </th>
+          <th class="text-center">
+            Mail
+          </th>
+          <th class="text-center">
+            Mobile
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let itemx of detailleOrForms.controls; let i=index" [formGroupName]="i">
+          <td style="vertical-align:middle">
+            <mat-form-field>
+              <mat-select formControlName="article">
+                <mat-option *ngFor="let item of articleList" [value]="item.id">{{item.reference}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td style="vertical-align:middle">
+            <mat-form-field>
+              <input matInput placeholder="prixHt" formControlName="prixHt" (input)="calculTtc(i)">
+            </mat-form-field>
+          </td>
+          <td style="vertical-align:middle">
+            <mat-form-field>
+              <input matInput placeholder="quantite" formControlName="quantite" (input)="calculTtc(i)">
+            </mat-form-field>
+          </td>
+          <td style="vertical-align:middle">
+            <mat-form-field>
+              <input matInput placeholder="remise" formControlName="remise" (input)="calculTtc(i)">
+            </mat-form-field>
+          </td>
+          <td style="vertical-align:middle">
+            <mat-form-field>
+              <input matInput placeholder="tva" formControlName="tva" (input)="calculTtc(i)">
+            </mat-form-field>
+          </td>
+          <td style="vertical-align:middle">
+            <mat-form-field>
+              <input matInput placeholder="totalTtc" formControlName="totalTtc" (input)="calculMarge(i)">
+            </mat-form-field>
+          </td>
+          <td style="vertical-align:middle">
+            <button mat-raised-button color="warn" (click)="deletedetailleOr(i)">Delete</button>
+          </td>
+         
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <button mat-raised-button color="primary" (click)="adddetailleOr()">Add Product</button>
+
+</form>
+
+
+<button mat-raised-button color="primary" [disabled]="formData.invalid" (click)="add()" type="submit">
+  Ajouter
+</button>
+
+
+

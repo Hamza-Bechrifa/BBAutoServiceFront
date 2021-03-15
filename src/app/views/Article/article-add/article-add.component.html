@@ -1,0 +1,113 @@
+<div class="col-md-8">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Nouveau article</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form [formGroup]="articleForm" autocomplete="off" class="form-horizontal">
+      <div class="box-body">
+
+
+        <!--<mat-form-field appearance="outline">-->
+        &nbsp;&nbsp;&nbsp;
+        <mat-checkbox formControlName="type">
+          Main d'oeuvre
+        </mat-checkbox><br/>
+        <mat-form-field appearance="outline">
+          <mat-label>Reference</mat-label>
+          <input matInput formControlName="reference" required placeholder="reference">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>Reference Origine</mat-label>
+          <input matInput formControlName="referenceOrigine" placeholder="Reference Origine">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>Designation</mat-label>
+          <input matInput formControlName="designation" required placeholder="Designation">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>Marque</mat-label>
+          <input matInput formControlName="marque"  placeholder="Marque">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>Emplacement</mat-label>
+          <input matInput formControlName="emplacement"  placeholder="Emplacement">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>Prix Ht</mat-label>
+          <input type="number" step="any" matInput formControlName="prixHt" required placeholder="Prix Ht" (input)="calculTtc()">
+          <mat-error></mat-error>
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-label>TVA %</mat-label>
+          <input type="number" step="any" matInput formControlName="tva" required placeholder="TVA %" (input)="calculTtc()">
+          <mat-error></mat-error>
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-label>FODEC %</mat-label>
+          <input type="number" step="any" matInput formControlName="fodec" required placeholder="FODEC %" (input)="calculTtc()">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>TTC %</mat-label>
+          <input type="number" step="any" matInput formControlName="prixTTc" required placeholder="Prix TTC" (input)="calculHT()">
+          <mat-error></mat-error>
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-label>Marge %</mat-label>
+          <input type="number" step="any" matInput formControlName="marge" required placeholder="MARGE %" (input)="calculTtc()">
+          <mat-error></mat-error>
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-label>Prix Public</mat-label>
+          <input type="number" step="any" matInput formControlName="prixPublic" required placeholder="Prix public" (input)="calculMarge()">
+          <mat-error></mat-error>
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-label>stock initial</mat-label>
+          <input matInput formControlName="stockInitial" required placeholder="stock initial">
+          <mat-error></mat-error>
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-label>stock alerte</mat-label>
+          <input matInput formControlName="stockAlerte" required placeholder="stock alerte">
+          <mat-error></mat-error>
+        </mat-form-field>
+
+
+
+
+      </div>
+    </form>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <button mat-raised-button class="btn btn-info pull-right" [disabled]="articleForm.invalid" (click)="AjouterArticle()" type="submit">
+        Ajouter
+      </button>
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>
+
+
+

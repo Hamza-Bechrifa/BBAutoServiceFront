@@ -1,0 +1,44 @@
+<div class="col-md-6">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Nouveau client</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form [formGroup]="clientForm" autocomplete="off">
+      <div class="box-body">
+        <mat-form-field appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="nom" required placeholder="nom">
+          <mat-error>ce champ est obligatoire</mat-error>
+        </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <mat-label>MF</mat-label>
+          <input matInput formControlName="matriculeFiscale" required placeholder="MF">
+          <mat-error>ce champ est obligatoire</mat-error>
+        </mat-form-field><br /><br />
+        <mat-form-field appearance="outline">
+          <mat-label>téléphone</mat-label>
+          <input matInput formControlName="telephone" required placeholder="telephone">
+          <mat-error>ce champ est obligatoire</mat-error>
+        </mat-form-field><br /><br />
+        <mat-form-field appearance="outline">
+          <mat-label>Adresse</mat-label>
+          <input matInput formControlName="adresse" required placeholder="adresse">
+          <mat-error>ce champ est obligatoire</mat-error>
+        </mat-form-field><br><br>
+
+        <button mat-raised-button class="btn btn-info pull-right" color="primary" [disabled]="clientForm.invalid" (click)="AjouterFournisseur()" type="submit">
+          Ajouter
+        </button>
+      </div>
+    </form>
+    <!-- /.box-body -->
+    <div class="box-footer">
+
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>

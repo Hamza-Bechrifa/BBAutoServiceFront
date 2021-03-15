@@ -1,0 +1,144 @@
+<!--<pre>{{formData.value|json}}</pre>
+<pre>{{voitureListFiltred|json}}</pre>
+<pre>{{clientList|json}}</pre>-->
+
+<div class="col-md-12">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Nouveau Ordre de Reparation</h3>
+    </div>
+    <!-- /.box-header -->
+
+    <div class="box-body">
+      <form [formGroup]="formData" autocomplete="off">
+
+        <!--<mat-form-field appearance="outline">
+        <mat-label>Reference</mat-label>-->
+
+        <mat-form-field appearance="outline" [floatLabel]="'never'">
+          <mat-select formControlName="client" placeholder="client" (openedChange)="clientInput.focus();" (selectionChange)="voitureListChange($event)">
+            <input class="myInput" #clientInput matInput focused="'true'" type="text" (keyup)="searchClient($event.target.value);" autocomplete="off" placeholder="search">
+            <mat-divider></mat-divider>
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let item of clientListfiltred" [value]="item.id">{{item.nomPrenom}} : {{item.solde}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" [floatLabel]="'never'">
+          <mat-select formControlName="voiture" placeholder="voiture" (openedChange)="voitureInput.focus()">
+            <input class="myInput" matInput #voitureInput focused="'true'" type="text" autocomplete="off" placeholder="search">
+            <mat-divider></mat-divider>
+            <mat-option *ngFor="let item of voitureListFiltred" [value]="item.id">{{item.matricule}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>date</mat-label>
+          <input type="date" matInput formControlName="dateDocument" required placeholder="date">
+          <mat-error>fff</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>kilometrage</mat-label>
+          <input matInput formControlName="kilometrage" required placeholder="kilometrage">
+          <mat-error>fff</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>commentaire interne</mat-label>
+          <input matInput formControlName="commentaireInterne" placeholder="commentaireInterne">
+          <mat-error>fff</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>commentaire externe</mat-label>
+          <input matInput formControlName="commentaireExterne" placeholder="commentaireExterne">
+          <mat-error>fff</mat-error>
+        </mat-form-field>
+
+        <div formArrayName="detailleOr">
+
+          <div *ngFor="let itemx of detailleOrForms.controls; let i=index" [formGroupName]="i" class="">
+
+            <mat-form-field [floatLabel]="'never'">
+              <mat-select required formControlName="article" placeholder="Article" (openedChange)="ArticleInput.focus()" (selectionChange)="changePrix(i,$event);calculTtc(i);articleListdefault()">
+                <input class="myInput" #ArticleInput matInput focused="'true'" type="text" (keyup)="searchArticle($event.target.value)" autocomplete="off" placeholder="search">
+                <mat-divider></mat-divider>
+                <mat-option *ngFor="let item of articleListFiltred" prix="item.prixPublic" [value]="item.id">{{item.reference}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>designation</mat-label>
+              <input matInput placeholder="designation" formControlName="designation" readonly>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>prixHt</mat-label>
+              <input type="number" matInput placeholder="prixHt" formControlName="prixHt" (input)="calculTtc(i)">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>quantite</mat-label>
+              <input matInput placeholder="quantite" formControlName="quantite" (input)="calculTtc(i)">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>remise %</mat-label>
+              <input matInput placeholder="remise" formControlName="remise" (input)="calculTtc(i)">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>TVA</mat-label>
+              <input matInput placeholder="tva" formControlName="tva" (input)="calculTtc(i)">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Total TTC</mat-label>
+              <input matInput readonly placeholder="totalTtc" formControlName="totalTtc" (input)="calculMarge(i)">
+            </mat-form-field>
+
+            <button mat-raised-button color="warn" (click)="deletedetailleOr(i)" class="pull-right">Delete</button>
+
+          </div>
+          <div class="d-flex justify-content-center"><button mat-raised-button color="primary" (click)="adddetailleOr()">Add Product</button></div>
+          
+          <br /><br />
+        </div>
+
+      </form>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+     
+
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6 text-right">
+          <button mat-raised-button class="" color="primary" [disabled]="formData.invalid" (click)="paymentModal.show()" type="button">
+            Passer au paiement
+          </button>
+          <!--<button mat-raised-button class="" color="primary" (click)="paymentModal.show()" type="button">
+            openModal
+          </button>-->
+        </div>
+      </div>
+
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>
+
+
+<div bsModal #paymentModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmer</h4>
+        <button type="button" class="close" (click)="paymentModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      Voulez vous confirmer le paiement en espèce et imprimer?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="passerAuPaiement()">Non passerAuPaiement</button>
+        <button type="button" class="btn btn-primary" (click)="payerEnEspeceEtImprimer()">oui</button>
+      </div>
+    </div>
+  </div>
+</div>

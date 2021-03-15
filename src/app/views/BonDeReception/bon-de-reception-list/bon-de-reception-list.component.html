@@ -1,0 +1,50 @@
+
+<!--<pre>{{brList| json}}</pre>-->
+
+
+
+<div class="col-md-12">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">List des bon de reception</h3>
+      <a [routerLink]="['/BonDeReception/add']" class="btn btn-info pull-right">Ajouter</a>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+
+    <div class="box-body">
+
+      <table *ngIf="brList" datatable class="table row-border hover">
+        <thead>
+          <tr>
+
+            <th>code</th>
+            <th>date</th>
+            <th>fournisseur</th>
+            <th>total HT</th>
+            <th>total TTC</th>
+            <th>commentaire</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of brList" (click)="show(item.id)">
+            <td>{{item.code}}</td>
+            <td>{{item.dateDocument}}</td>
+            <td>{{item.nom}}</td>
+            <td>{{item.totalHT}}</td>
+            <td>{{item.totalTTC}}</td>
+            <td>{{item.commentaire}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- /.box-body -->
+    <div class="box-footer">
+
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>

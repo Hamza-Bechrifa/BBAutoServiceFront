@@ -1,0 +1,48 @@
+<div class="col-md-12">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">List des voitures</h3>
+      <a [routerLink]="['/voiture/add']" class="btn btn-info pull-right">Ajouter</a>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+
+    <div class="box-body">
+
+      <table *ngIf="VoitureList" datatable class="table row-border hover">
+        <thead>
+          <tr>
+            <th>matricule</th>
+            <th>marque</th>
+            <th>modele</th>
+            <th>dateMiseEnCirculation</th>
+            <th>vin</th>
+            <th>kilometrage</th>
+            <th>client</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of VoitureList" (click)="showVoiture(item.id)">
+            <td>{{item.matricule}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.modele}}</td>
+            <td>{{item.dateMiseEnCirculation}}</td>
+            <td>{{item.vin}}</td>
+            <td>{{item.kilometrage}}</td>
+            <td>{{item.nomPrenom}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <!-- /.box-body -->
+    <div class="box-footer">
+
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>
+
