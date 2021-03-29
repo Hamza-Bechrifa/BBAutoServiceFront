@@ -41,8 +41,20 @@ export const navigation = [
     roles: ['ADMIN MSS', 'ADMIN ORGANISME']
   },
   {
+    name: 'Reglement Client',
+    url: '/ReglementClient',
+    icon: 'fa fa-users',
+    roles: ['ADMIN MSS', 'ADMIN ORGANISME']
+  },
+  {
     name: 'Gestion des Achats',
     url: '/BonDeReception',
+    icon: 'fa fa-users',
+    roles: ['ADMIN MSS', 'ADMIN ORGANISME']
+  },
+  {
+    name: 'ReglementFournisseur',
+    url: '/ReglementFournisseur',
     icon: 'fa fa-users',
     roles: ['ADMIN MSS', 'ADMIN ORGANISME']
   },

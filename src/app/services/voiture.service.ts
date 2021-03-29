@@ -11,16 +11,16 @@ export class VoitureService {
   constructor(private http: HttpClient) {
   }
 
-  voituresList() {
+  List() {
     return this.http.get(environment.api_url + '/api/voitures');
   }
-  voituresAdd(voiture) {
+  Add(voiture) {
     return this.http.post(environment.api_url + '/api/voitures', voiture);
   }
-  voituresGet(id) {
+  Get(id) {
     return this.http.get(environment.api_url + '/api/voitures/' + id);
   }
-  voituresEdit(voiture) {
+  Edit(voiture) {
     return this.http.put(environment.api_url + '/api/voitures/' + voiture.id, voiture);
   }
 

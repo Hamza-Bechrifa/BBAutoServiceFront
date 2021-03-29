@@ -13,6 +13,11 @@ export class ClientShowComponent implements OnInit {
   client: any;
   Mouvements: any;
   voitures: any;
+  tabToShow = "Detailles"
+  dtOptions =
+    {
+      "order": [0, 'desc']
+    }
   constructor(private router: Router,
               private route: ActivatedRoute,
               private clientService: ClientService,
@@ -43,7 +48,17 @@ export class ClientShowComponent implements OnInit {
   showVoiture(id) {
     this.router.navigate(['/voiture/show/' + id]);
   }
+  showDocument(id, type) {
+    if (type == 'OR')
+      this.router.navigate(['/ordreDeReparation/show/' + id]);
+    else if (type == 'RC') 
+      this.router.navigate(['/ReglementClient/show/' + id]);
+    
+  }
   reglement() {
     this.router.navigate(['ReglementClient/add', "PC", this.id]);
+  }
+  SetTabToShow(id) {
+    this.tabToShow = id;
   }
 }

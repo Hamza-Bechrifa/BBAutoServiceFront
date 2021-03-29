@@ -9,6 +9,7 @@ import { ClientService } from '../../services/client.service';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit{
+  nombre =""
   articles = [
     {
       "reference": "AMOR. SACHS",
@@ -5026,7 +5027,7 @@ export class TestComponent implements OnInit{
     var i = 0;
     var e = 0;
 
-  
+    this.nombre = this.articleService.NumberToLetter("250")
     // importation articles
     //this.articles.forEach(function(element) {
 
@@ -5066,21 +5067,23 @@ export class TestComponent implements OnInit{
 
     }
 
-  search(query: string) {
-    console.log('query', query)
-    let result = this.select(query)
-    this.selectedAreas = result;
-  }
+  PrintElem(elem) {
+  var mywindow = window.open('', 'PRINT', 'height=800,width=1200');
 
-  select(query: string): string[] {
-    let result: string[] = [];
-    for (let a of this.areas) {
-      if (a.toLowerCase().indexOf(query) > -1) {
-        result.push(a)
-      }
-    }
-    return result
-  }
+  mywindow.document.write('<html><head><title>' + "Print Document" + '</title>');
+    mywindow.document.write('<style>@media print {   body{ -webkit - print - color - adjust: exact; }   div.divFooter {position: fixed; bottom: 0;     }    }    </style>');
+    mywindow.document.write('</head><body onload="window.print();">');
+  mywindow.document.write(document.getElementById(elem).innerHTML);
+  mywindow.document.write('</body></html>');
+
+  mywindow.document.close(); // necessary for IE >= 10
+  mywindow.focus(); // necessary for IE >= 10*/
+
+  mywindow.print();
+  mywindow.close();
+
+  return true;
+}
 
   
 

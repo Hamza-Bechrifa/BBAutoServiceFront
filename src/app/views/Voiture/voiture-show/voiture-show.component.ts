@@ -10,11 +10,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class VoitureShowComponent implements OnInit {
   public id: string;
   voiture: any;
+  tabToShow = "Detailles";
   constructor(private router: Router, private route: ActivatedRoute, private voitureService: VoitureService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.voitureService.voituresGet(this.id).subscribe(
+    this.voitureService.Get(this.id).subscribe(
       data => { this.voiture = data },
       (err) => { alert("erreur") });
   }
@@ -22,5 +23,7 @@ export class VoitureShowComponent implements OnInit {
   edit() {
     this.router.navigate(['/voiture/edit/' + this.id]);
   }
-
+  SetTabToShow(id) {
+    this.tabToShow = id;
+  }
 }

@@ -50,7 +50,7 @@ export class BonDeReceptionAddComponent implements OnInit {
         alert('Erreur système');
       }
     );
-    this.voitureService.voituresList().subscribe(
+    this.voitureService.List().subscribe(
       data => {
         this.voitureList = data;
         this.voitureListFiltred = this.voitureList.filter(voiture => voiture.fournisseur == -1);

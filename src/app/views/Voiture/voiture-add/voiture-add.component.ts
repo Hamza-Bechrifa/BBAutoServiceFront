@@ -14,6 +14,7 @@ export class VoitureAddComponent implements OnInit {
 
   VoitureForm: any;
   clientList: any;
+  clientListfiltred: any;
   constructor(private router: Router, private fb: FormBuilder, private VoitureService: VoitureService, private clientService: ClientService) { }
 
   ngOnInit() {
@@ -31,6 +32,7 @@ export class VoitureAddComponent implements OnInit {
     this.clientService.clientsList().subscribe(
       data => {
         this.clientList = data;
+        this.clientListfiltred = data;
       },
       (err) => {
         console.log(err);
@@ -39,8 +41,18 @@ export class VoitureAddComponent implements OnInit {
     );
 
   }
+  searchClient(text) {
+    text = text.toLowerCase()
+    let result: string[] = [];
+    for (let a of this.clientList) {
+      if (a.nomPrenom.toLowerCase().indexOf(text) > -1) {
+        result.push(a)
+      }
+    }
+    this.clientListfiltred = result;
+  }
   AjouterVoiture() {
-    this.VoitureService.voituresAdd(this.VoitureForm.value).subscribe(
+    this.VoitureService.Add(this.VoitureForm.value).subscribe(
 
       data => {
         this.router.navigate(['/voiture']);

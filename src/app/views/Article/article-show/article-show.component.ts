@@ -39,4 +39,11 @@ export class ArticleShowComponent implements OnInit {
   SetTabToShow(id) {
     this.tabToShow = id;
   }
+  orShow(id) {
+    this.router.navigate(['/ordreDeReparation/show/' + id]);
+  }
+  brShow(id) {
+    this.router.navigate(['/BonDeReception/show/' + id]);
+  }
 }
+

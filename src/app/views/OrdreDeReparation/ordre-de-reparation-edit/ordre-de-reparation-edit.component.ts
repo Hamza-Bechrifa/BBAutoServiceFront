@@ -4,6 +4,7 @@ import { FormBuilder, FormArray } from '@angular/forms';
 import { OrdreDeReparationService } from '../../../services/ordre-de-reparation.service';
 import { ArticleService } from '../../../services/article.service';
 import { VoitureService } from '../../../services/Voiture.service';
+import { ClientService } from '../../../services/client.service';
 
 @Component({
   selector: 'app-ordre-de-reparation-edit',
@@ -15,12 +16,18 @@ export class OrdreDeReparationEditComponent implements OnInit {
   detaille: any;
   formData: any;
   articleList: any;
+  articleListFiltred: any;
   voitureList: any;
+  voitureListFiltred: any;
+  clientList: any;
+  clientListfiltred: any;
+
   constructor(private router: Router,
     private fb: FormBuilder,
     private ordreDeReparationService: OrdreDeReparationService,
     private articleService: ArticleService,
     private voitureService: VoitureService,
+    private clientService: ClientService,
     private route: ActivatedRoute) { }
     id: any;
 
@@ -43,32 +50,33 @@ export class OrdreDeReparationEditComponent implements OnInit {
         this.formData.patchValue(this.obj);
       },
       (err) => { alert("erreur") });
-    this.ordreDeReparationService.Getdetaille(this.id).subscribe(
-      data => {
-        this.detaille = data;
-        console.log(data);
-        let i = 0
-        this.detaille.forEach(element=> {
-          this.adddetailleOr()
-          this.detailleOrForms.at(i).patchValue(element)
-
-        })
-      
-      },
-      (err) => { alert("erreur") });
-   
+    
     this.articleService.articlesList().subscribe(
       data => {
         this.articleList = data;
+        this.articleListFiltred = data;
+        this.getDetaillesOrs()
       },
       (err) => {
         console.log(err);
         alert('Erreur système');
       }
     );
-    this.voitureService.voituresList().subscribe(
+    this.voitureService.List().subscribe(
       data => {
         this.voitureList = data;
+        this.voitureListFiltred = data;
+      },
+      (err) => {
+        console.log(err);
+        alert('Erreur système');
+      }
+    );
+    this.clientService.clientsList().subscribe(
+      data => {
+        this.clientList = data;
+        this.clientListfiltred = data;
+
       },
       (err) => {
         console.log(err);
@@ -87,6 +95,7 @@ export class OrdreDeReparationEditComponent implements OnInit {
     const detailleOr = this.fb.group(
       {
         "article": 0,
+        "designation": "",
         "prixHt": 0,
         "quantite": 1,
         "remise": 0,
@@ -101,7 +110,7 @@ export class OrdreDeReparationEditComponent implements OnInit {
     this.detailleOrForms.removeAt(i);
   }
 
-  add() {
+  Edit() {
     this.ordreDeReparationService.Edit(this.formData.value).subscribe(
 
       data => {
@@ -111,6 +120,39 @@ export class OrdreDeReparationEditComponent implements OnInit {
     );
   }
 
+ 
+
+  voitureListChange(event) {
+    console.log("client:", event);
+    console.log(this.voitureList);
+    this.voitureListFiltred = this.voitureList.filter(voiture => voiture.client == event.value);
+  }
+  searchClient(text) {
+    text = text.toLowerCase()
+    let result: string[] = [];
+    for (let a of this.clientList) {
+      if (a.nomPrenom.toLowerCase().indexOf(text) > -1) {
+        result.push(a)
+      }
+    }
+    this.clientListfiltred = result;
+  }
+  searchArticle(text) {
+    text = text.toLowerCase()
+    let splitedText = text.split(' ');
+    let result: string[] = [];
+    for (let a of this.articleList) {
+      let add = true
+      for (let word of splitedText) {
+        if (a.reference.toLowerCase().indexOf(word) == -1 && a.designation.toLowerCase().indexOf(word) == -1) {
+          add = false
+        }
+      }
+      if (add)
+        result.push(a)
+    }
+    this.articleListFiltred = result;
+  }
   calculTtc(i) {
     let prixHt: number = this.detailleOrForms.at(i).get("prixHt").value;
     let quantite: number = this.detailleOrForms.at(i).get("quantite").value;
@@ -119,5 +161,39 @@ export class OrdreDeReparationEditComponent implements OnInit {
 
     this.detailleOrForms.at(i).patchValue({ "totalTtc": (+prixHt + +tva - +remise) * quantite });
   }
+  changePrix(i, event) {
 
+    this.detailleOrForms.at(i).patchValue(
+      {
+        "prixHt": this.articleList.filter(a => a.id === event.value)[0]['prixPublic'],
+        "tva": this.articleList.filter(a => a.id === event.value)[0]['tva'],
+        "designation": this.articleList.filter(a => a.id === event.value)[0]['designation'],
+      });
+  }
+
+  articleListdefault() {
+    this.articleListFiltred = this.articleList;
+  }
+
+  getDetaillesOrs() {
+    this.ordreDeReparationService.Getdetaille(this.id).subscribe(
+      data => {
+        this.detaille = data;
+        console.log(data);
+        let i = 0
+        this.detaille.forEach(element => {
+          this.adddetailleOr()
+          this.detailleOrForms.at(i).patchValue(element);
+          this.detailleOrForms.at(i).patchValue(
+            {
+
+              "designation": this.articleList.filter(a => a.id === element["article"])[0]['designation'],
+            });
+          i++
+        })
+
+      },
+      (err) => { alert("erreur") });
+
+  }
 }

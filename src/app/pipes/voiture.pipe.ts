@@ -10,7 +10,7 @@ export class VoiturePipe implements PipeTransform {
   transform(value: any, ...args: any[]): any {
    
     const promise1 = new Promise((resolve, reject) => {
-      this.voitureService.voituresGet(value).subscribe(data => {
+      this.voitureService.Get(value).subscribe(data => {
         console.log(data['matricule'])
         this.matricule= data['matricule']
       }, err =>

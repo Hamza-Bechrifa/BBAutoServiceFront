@@ -41,7 +41,10 @@ export class ArticleAddComponent implements OnInit {
       data => {
         this.router.navigate(['/article']);
       },
-      err => { alert(err); }
+      err => {
+        console.log("errrrrrrrrrrr",err)
+        alert(err.error);
+      }
     );
   }
   calculTtc() {

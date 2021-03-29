@@ -9,7 +9,17 @@ export class ReglementClientService {
 
   constructor(private http: HttpClient) { }
 
-  add(data) {
+
+  List() {
+    return this.http.get(environment.api_url + '/api/ReglementClients');
+  }
+  Add(data) {
     return this.http.post(environment.api_url + '/api/ReglementClients', data);
+  }
+  Get(id) {
+    return this.http.get(environment.api_url + '/api/ReglementClients/' + id);
+  }
+  Edit(data) {
+    return this.http.put(environment.api_url + '/api/ReglementClients/' + data.id, data);
   }
 }

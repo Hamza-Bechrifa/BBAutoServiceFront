@@ -8,7 +8,7 @@ export class ArticlePipe implements PipeTransform {
   constructor(private voitureService: VoitureService) { }
 
   transform(value: any, ...args: any[]): any {
-    this.voitureService.voituresGet(value).subscribe(data => {
+    this.voitureService.Get(value).subscribe(data => {
       console.log(data)
       return data['matricule']
     }, err => { return value;}

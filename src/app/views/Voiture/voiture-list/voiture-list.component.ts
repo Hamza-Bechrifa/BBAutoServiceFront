@@ -15,7 +15,7 @@ export class VoitureListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.voitureService.voituresList().subscribe(
+    this.voitureService.List().subscribe(
       data => {
         console.log(data)
         this.VoitureList = data;

@@ -15,14 +15,14 @@ idDocument{{idDocument}}
 </pre>-->
 
 <div class="col-md-8">
-  <div class="box box-info">
+  <div class="box box-info" *ngIf="client">
     <div class="box-header with-border">
       <h3 class="box-title">Nouveau Reglement client</h3>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    <form [formGroup]="reglementClientForm" autocomplete="off" class="form-horizontal">
-      <div class="box-body">
+    <form [formGroup]="reglementClientForm" autocomplete="off" class="form-horizontal" >
+      <div class="box-body" >
 
 
 
@@ -72,6 +72,9 @@ idDocument{{idDocument}}
     <div class="box-footer">
       <button mat-raised-button class="btn btn-info pull-right" [disabled]="reglementClientForm.invalid" (click)="addReglement()" type="submit">
         Ajouter
+      </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button *ngIf="typeDocument == 'OR'" mat-raised-button class="btn btn-primary pull-right" [disabled]="reglementClientForm.invalid" (click)="showOR()" type="submit">
+        Imprimer Document
       </button>
     </div>
     <!-- /.box-footer -->

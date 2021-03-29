@@ -27,13 +27,13 @@ export class VoitureEditComponent implements OnInit {
 
     });
     this.id = this.route.snapshot.paramMap.get('id');
-    this.voitureService.voituresGet(this.id).subscribe(
+    this.voitureService.Get(this.id).subscribe(
       data => { this.VoitureForm.patchValue(data) },
       (err) => { alert("erreur") });
 
   }
   ModifierVoiture() {
-    this.voitureService.voituresEdit(this.VoitureForm.value).subscribe(
+    this.voitureService.Edit(this.VoitureForm.value).subscribe(
 
       data => {
         this.router.navigate(['/voiture']);

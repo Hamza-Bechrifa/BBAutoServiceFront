@@ -26,7 +26,7 @@
         <tbody>
           <tr *ngFor="let item of clientList" (click)="showClient(item.id)">
             <td>{{item.nomPrenom}}</td>
-            <td>{{item.solde}}</td>
+            <td style="text-align: right;">{{item.solde | number : '1.3-3'}}</td>
             <td>{{item.cin}}</td>
             <td>{{item.telephone }}</td>
             <td>{{item.adresse}}</td>

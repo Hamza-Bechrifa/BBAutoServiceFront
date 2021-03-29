@@ -17,7 +17,7 @@
 
         <mat-form-field appearance="outline" [floatLabel]="'never'">
           <mat-select formControlName="client" placeholder="client" (openedChange)="clientInput.focus();" (selectionChange)="voitureListChange($event)">
-            <input class="myInput" #clientInput matInput focused="'true'" type="text" (keyup)="searchClient($event.target.value);" autocomplete="off" placeholder="search">
+            <input class="myInput" #clientInput matInput focused="'true'" type="text" (keydown)="$event.stopPropagation()" (keyup)="searchClient($event.target.value);" autocomplete="off" placeholder="search">
             <mat-divider></mat-divider>
             <mat-option>None</mat-option>
             <mat-option *ngFor="let item of clientListfiltred" [value]="item.id">{{item.nomPrenom}} : {{item.solde}}</mat-option>
@@ -59,9 +59,9 @@
 
             <mat-form-field [floatLabel]="'never'">
               <mat-select required formControlName="article" placeholder="Article" (openedChange)="ArticleInput.focus()" (selectionChange)="changePrix(i,$event);calculTtc(i);articleListdefault()">
-                <input class="myInput" #ArticleInput matInput focused="'true'" type="text" (keyup)="searchArticle($event.target.value)" autocomplete="off" placeholder="search">
+                <input class="myInput" #ArticleInput matInput focused="'true'" type="text" (keydown)="$event.stopPropagation()" (keyup)="searchArticle($event.target.value)" autocomplete="off" placeholder="search">
                 <mat-divider></mat-divider>
-                <mat-option *ngFor="let item of articleListFiltred" prix="item.prixPublic" [value]="item.id">{{item.reference}}</mat-option>
+                <mat-option *ngFor="let item of articleListFiltred" prix="item.prixPublic" [value]="item.id">{{item.reference}} {{item.designation}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field appearance="outline">
@@ -70,7 +70,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>prixHt</mat-label>
-              <input type="number" matInput placeholder="prixHt" formControlName="prixHt" (input)="calculTtc(i)">
+              <input type="number" matInput placeholder="prixHt" formControlName="prixHt" (keyup)="HorsTaxToTTC($event,i)" (input)="calculTtc(i)">
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>quantite</mat-label>

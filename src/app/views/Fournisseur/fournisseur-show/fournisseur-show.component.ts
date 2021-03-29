@@ -13,6 +13,7 @@ export class FournisseurShowComponent implements OnInit {
   public id: string;
   fournisseur: any;
   Mouvements: any;
+  tabToShow = "Detailles";
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -37,6 +38,8 @@ export class FournisseurShowComponent implements OnInit {
   edit() {
     this.router.navigate(['/fournisseur/edit/' + this.id]);
   }
- 
+  SetTabToShow(id) {
+    this.tabToShow = id;
+  }
 
 }

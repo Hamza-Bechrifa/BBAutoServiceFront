@@ -1,1 +1,46 @@
-<p>reglement-client-list works!</p>
+<!--<pre>{{rcList| json}}</pre>-->
+
+
+<div class="col-md-12">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">List des Reglements client</h3>
+      <a [routerLink]="['/ReglementClient/add']" class="btn btn-info pull-right">Ajouter</a>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+
+    <div class="box-body">
+
+      <table *ngIf="rcList" datatable [dtOptions]="dtOptions" class="table row-border hover">
+        <thead>
+          <tr>
+            <th>date creation</th>
+            <th>date</th>
+            <th>client</th>
+            <th>montant</th>
+            <th>mode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of rcList" (click)="show(item.id)">
+            <td>{{item.dateOperation }}</td>
+            <td>{{item.dateReglement }}</td>
+            <td>{{item.client}}</td>
+            <td>{{item.montant}}</td>
+            <td>{{item.mode}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <!-- /.box-body -->
+    <div class="box-footer">
+
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>

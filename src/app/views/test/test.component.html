@@ -1,3 +1,153 @@
-<p>test works!</p>
+<p>test works! {{nombre}}</p>
 
 
+<div id="sectionToPrint" hidden>
+
+
+  <table style="width: 100%;">
+    <tbody>
+      <tr>
+
+        <td style="width: 60%;">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3 style="color : orange">BB AUTO SERVICES</h3>
+
+        <td style="width: 40%; background-color: #d6d5d5 !important;
+          border-radius: 20px;">
+          <blockquote>
+            <h4>
+
+
+              Bon de livraison N°: 2738
+
+
+
+
+
+            </h4>
+            Date:  15-03-2021 <br>
+          </blockquote>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table style="width: 100%;">
+    <tbody>
+      <tr>
+        <td style="width: 60%;">
+          <blockquote>
+
+            <h3>
+              <p><em>Client: <strong> AMATEUR DE FROMAGE</strong></em><br /><em> CIN/MF:</em><br /><em> Adresse: </em><br /><em> Telephone:<strong>&nbsp;/&nbsp;/</strong><br></em></p>
+            </h3>
+            MALEK
+            <br>
+            Livreur: Malek
+
+          </blockquote>
+        </td>
+        <td style="width: 40%;">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p>&nbsp;</p>
+
+  <table style="width: 100%;border-collapse: collapse;">
+    <thead>
+      <tr style="border-radius: 20px;background-color: #d6d5d5 !important;">
+        <th style="width: 10%;">Code</th>
+        <th style="width: 47%;">Désignation</th>
+        <th style="width: 10%;">Qté </th>
+        <th style="width: 10%;">PHT </th>
+        <th style="width: 5%;">TVA </th>
+        <th style="width: 5%;">R </th>
+        <th style="width: 13%;">PTTC </th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td>moz</td>
+        <td>Mozzarella Filoni</td>
+        <td>0.8</td>
+
+        <td>20.000</td>
+        <td>0</td>
+        <td>0</td>
+        <td>16.000</td>
+      </tr>
+
+      <tr>
+        <td>Edam</td>
+        <td>Edam</td>
+        <td>0.5</td>
+
+        <td>25.000</td>
+        <td>0</td>
+        <td>20</td>
+        <td>10.000</td>
+      </tr>
+
+      <tr>
+        <td>Gouda</td>
+        <td>Gouda</td>
+        <td>0.45</td>
+
+        <td>25.000</td>
+        <td>0</td>
+        <td>20</td>
+        <td>9.000</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td colspan="2">Total HT</td>
+        <td style="text-align: right;">35.000</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td colspan="2">TVA</td>
+        <td style="text-align: right;">0.000</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td colspan="2">TOTAL</td>
+        <td style="text-align: right;">
+
+          <b>35.000</b>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <p class="text-muted well well-sm no-shadow" style="font-size:20px;" id="sommeLettre">
+    <span style="text-align:left;  font-style: italic;">
+
+      Arrêté le présent bon de livraison  à la somme de :
+
+    </span>
+    <span style="text-align:left;font-weight: bold;font-style: italic;">
+
+      trente-cinq  dinars et zero  millimes
+
+
+
+
+    </span>
+
+  </p>
+  <div class="divFooter">
+    <strong>BB AUTO SERVICES. 000, la liberté ksar Bardo, Béja Nord 9000</strong><strong>Matricule fiscal: 1617230/w/a/m/000</strong><br><strong>T&eacute;l: (+216) 78 458 994 / (+216) 95 553 535/ (+216) 50 698 942 </strong>
+  </div>
+</div>
+
+<input type="button" (click)="PrintElem('sectionToPrint')" value="print a div!" />

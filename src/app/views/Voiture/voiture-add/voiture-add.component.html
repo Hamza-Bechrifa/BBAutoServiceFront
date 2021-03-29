@@ -9,36 +9,44 @@
       <div class="box-body">
         <!--<mat-form-field appearance="outline">-->
         <mat-form-field appearance="outline">
+          <mat-label>matricule</mat-label>
           <input matInput formControlName="matricule" required placeholder="matricule">
           <mat-error>fff</mat-error>
         </mat-form-field><br><br>
         <mat-form-field appearance="outline">
+          <mat-label>marque</mat-label>
           <input matInput formControlName="type" required placeholder="marque">
           <mat-error>fff</mat-error>
         </mat-form-field><br><br>
         <mat-form-field appearance="outline">
+          <mat-label>modele</mat-label>
           <input matInput formControlName="modele" required placeholder="modele">
           <mat-error>fff</mat-error>
         </mat-form-field><br><br>
         <mat-form-field appearance="outline">
-          <input matInput formControlName="dateMiseEnCirculation" required placeholder="dateMiseEnCirculation">
+          <mat-label>dateMiseEnCirculation</mat-label>
+          <input required type="date" matInput formControlName="dateMiseEnCirculation" required placeholder="dateMiseEnCirculation">
           <mat-error>fff</mat-error>
         </mat-form-field><br><br>
         <mat-form-field appearance="outline">
-          <input matInput formControlName="vin" required placeholder="vin">
-          <mat-error>fff</mat-error>
+          <mat-label>vin</mat-label>
+          <input matInput formControlName="vin" required placeholder="vin" pattern="[A-Z0-9]{17}">
+          <mat-error>Le VIN est composé de 17 caractéres alphanumérique </mat-error>
         </mat-form-field><br><br>
         <mat-form-field appearance="outline">
+          <mat-label>kilometrage</mat-label>
           <input matInput formControlName="kilometrage" required placeholder="kilometrage">
           <mat-error>fff</mat-error>
         </mat-form-field><br><br>
-        <mat-form-field appearance="outline">
-          <mat-select class="form-control" formControlName="client">
-            <mat-option *ngFor="let item of clientList" [value]="item.id">{{item.nomPrenom}}</mat-option>
+        <mat-form-field appearance="outline" [floatLabel]="'never'">
+          <mat-select formControlName="client" placeholder="client" (openedChange)="clientInput.focus();">
+            <input class="myInput" #clientInput matInput focused="'true'" type="text" (keydown)="$event.stopPropagation()" (keyup)="searchClient($event.target.value);" autocomplete="off" placeholder="search">
+            <mat-divider></mat-divider>
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let item of clientListfiltred" [value]="item.id">{{item.nomPrenom}} : {{item.solde}}</mat-option>
           </mat-select>
-          <mat-error>fff</mat-error>
         </mat-form-field><br><br>
-        </div>
+      </div>
 
     </form>
     <!-- /.box-body -->

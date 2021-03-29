@@ -51,7 +51,7 @@ export class OrdreDeReparationAddComponent implements OnInit {
         alert('Erreur système');
       }
     );
-    this.voitureService.voituresList().subscribe(
+    this.voitureService.List().subscribe(
       data => {
         this.voitureList = data;
         this.voitureListFiltred = this.voitureList.filter(voiture => voiture.client == -1);
@@ -65,7 +65,7 @@ export class OrdreDeReparationAddComponent implements OnInit {
       data => {
         this.clientList = data;
         this.clientListfiltred = data;
-       
+
       },
       (err) => {
         console.log(err);
@@ -105,8 +105,8 @@ export class OrdreDeReparationAddComponent implements OnInit {
     this.ordreDeReparationService.Add(this.formData.value).subscribe(
 
       data => {
-        console.log("sucess",data)
-        this.router.navigate(['ReglementClient/add',"OR",data["id"]]);
+        console.log("sucess", data)
+        this.router.navigate(['ReglementClient/add', "OR", data["id"]]);
       },
       err => { alert(err); }
     );
@@ -114,10 +114,10 @@ export class OrdreDeReparationAddComponent implements OnInit {
   payerEnEspeceEtImprimer() {
     this.ordreDeReparationService.Add(this.formData.value).subscribe(
 
-     (data: any) => {
+      (data: any) => {
         console.log("sucess", data)
-        this.reglementClientService.add(
-          {            
+        this.reglementClientService.Add(
+          {
             "client": data.client,
             "montant": data.totalTtc,
             "ordreDeReparation": data.id,
@@ -125,14 +125,14 @@ export class OrdreDeReparationAddComponent implements OnInit {
           }
         ).subscribe(
           data1 => {
-            this.router.navigate(['ordreDeReparation/show',data["id"]]);
+            this.router.navigate(['ordreDeReparation/show', data["id"]]);
           },
           err => {
-
+            console.log("erreur paiement",err);
           }
         );
       },
-      err => { alert(err); }
+      err => { console.log(err); alert(err); }
     );
   }
 
@@ -142,10 +142,10 @@ export class OrdreDeReparationAddComponent implements OnInit {
     let tva: number = prixHt * this.detailleOrForms.at(i).get("tva").value / 100;
     let remise: number = prixHt * this.detailleOrForms.at(i).get("remise").value / 100;
 
-    this.detailleOrForms.at(i).patchValue({ "totalTtc": (+prixHt + +tva - +remise) * quantite });
+    this.detailleOrForms.at(i).patchValue({ "totalTtc": ((+prixHt + +tva - +remise) * quantite).toFixed(3) });
   }
-  changePrix(i,event) {
-    
+  changePrix(i, event) {
+
     this.detailleOrForms.at(i).patchValue(
       {
         "prixHt": this.articleList.filter(a => a.id === event.value)[0]['prixPublic'],
@@ -160,17 +160,17 @@ export class OrdreDeReparationAddComponent implements OnInit {
     this.voitureListFiltred = this.voitureList.filter(voiture => voiture.client == event.value);
   }
   voitureListdefault() {
-     this.voitureListFiltred = this.voitureList;
+    this.voitureListFiltred = this.voitureList;
   }
   articleListdefault() {
-     this.articleListFiltred = this.articleList;
+    this.articleListFiltred = this.articleList;
   }
 
   searchClient(text) {
     text = text.toLowerCase()
     let result: string[] = [];
     for (let a of this.clientList) {
-     if (a.nomPrenom.toLowerCase().indexOf(text) > -1) {
+      if (a.nomPrenom.toLowerCase().indexOf(text) > -1) {
         result.push(a)
       }
     }
@@ -178,11 +178,17 @@ export class OrdreDeReparationAddComponent implements OnInit {
   }
   searchArticle(text) {
     text = text.toLowerCase()
+    let splitedText = text.split(' ');
     let result: string[] = [];
     for (let a of this.articleList) {
-      if (a.reference.toLowerCase().indexOf(text) > -1 || a.designation.toLowerCase().indexOf(text) > -1) {
-        result.push(a)
+      let add = true
+      for (let word of splitedText) {
+        if (a.reference.toLowerCase().indexOf(word) == -1 && a.designation.toLowerCase().indexOf(word) == -1) {
+          add = false
+        }
       }
+      if (add)
+        result.push(a)
     }
     this.articleListFiltred = result;
   }
@@ -190,28 +196,39 @@ export class OrdreDeReparationAddComponent implements OnInit {
 
 
   }
-  datetimeNow() 
-    {
-      var now = new Date($.now())
-        , year
-        , month
-        , date
-        , hours
-        , minutes
-        , seconds
-        ;
+  datetimeNow() {
+    var now = new Date($.now())
+      , year
+      , month
+      , date
+      , hours
+      , minutes
+      , seconds
+      ;
 
-      year = now.getFullYear();
-      month = now.getMonth().toString().length === 1 ? '0' + (now.getMonth() + 1).toString() : now.getMonth() + 1;
-      date = now.getDate().toString().length === 1 ? '0' + (now.getDate()).toString() : now.getDate();
-      hours = now.getHours().toString().length === 1 ? '0' + now.getHours().toString() : now.getHours();
-      minutes = now.getMinutes().toString().length === 1 ? '0' + now.getMinutes().toString() : now.getMinutes();
-      seconds = now.getSeconds().toString().length === 1 ? '0' + now.getSeconds().toString() : now.getSeconds();
+    year = now.getFullYear();
+    month = now.getMonth().toString().length === 1 ? '0' + (now.getMonth() + 1).toString() : now.getMonth() + 1;
+    date = now.getDate().toString().length === 1 ? '0' + (now.getDate()).toString() : now.getDate();
+    hours = now.getHours().toString().length === 1 ? '0' + now.getHours().toString() : now.getHours();
+    minutes = now.getMinutes().toString().length === 1 ? '0' + now.getMinutes().toString() : now.getMinutes();
+    seconds = now.getSeconds().toString().length === 1 ? '0' + now.getSeconds().toString() : now.getSeconds();
 
-      return year + '-' + month + '-' + date /*+ 'T' + hours + ':' + minutes + ':' + seconds*/;
-
+    return year + '-' + month + '-' + date /*+ 'T' + hours + ':' + minutes + ':' + seconds*/;
 
 
+
+  }
+  HorsTaxToTTC(event: any,i: number) {
+    console.log("********", event)
+    if (event.code == "F9") {
+      let prixHt: number = this.detailleOrForms.at(i).get("prixHt").value;
+      let tva: number = this.detailleOrForms.at(i).get("tva").value / 100;
+
+      prixHt = prixHt / (1 + tva);
+      console.log(prixHt)
+      this.detailleOrForms.at(i).patchValue({ "prixHt": prixHt.toFixed(3) });
+      this.calculTtc(i);
     }
-  
+  }
+
 }

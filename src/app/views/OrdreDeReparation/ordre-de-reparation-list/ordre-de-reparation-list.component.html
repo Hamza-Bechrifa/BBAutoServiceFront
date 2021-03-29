@@ -16,24 +16,26 @@
       <table *ngIf="orList" datatable [dtOptions]="dtOptions" class="table row-border hover">
         <thead>
           <tr>
+            <th>date creation</th>
             <th>date</th>
             <th>client</th>
             <th>voiture</th>
             <th>kilometrage</th>
             <td>totalHt</td>
             <td>totalTtc</td>
-            <td>resteAPaye</td>
+            <!--<td>resteAPaye</td>-->
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of orList" (click)="show(item.id)">
+            <td>{{item.dateCreation }}</td>
             <td>{{item.dateDocument }}</td>
             <td>{{item.client}}</td>
             <td>{{item.voiture}}</td>
             <td>{{item.kilometrage}}</td>
-            <td>{{item.totalHt}}</td>
-            <td>{{item.totalTtc}}</td>
-            <td>{{item.resteAPaye}}</td>
+            <td style="text-align: right;">{{item.totalHt | number : '1.3-3'}}</td>
+            <td style="text-align: right;">{{item.totalTtc | number : '1.3-3'}}</td>
+            <!--<td style="text-align: right;">{{item.resteAPaye | number : '1.3-3'}}</td>-->
           </tr>
         </tbody>
       </table>
