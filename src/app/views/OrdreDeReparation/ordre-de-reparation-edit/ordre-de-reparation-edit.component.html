@@ -179,7 +179,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>prixHt</mat-label>
-              <input type="number" matInput placeholder="prixHt" formControlName="prixHt" (input)="calculTtc(i)">
+              <input type="number" matInput placeholder="prixHt" formControlName="prixHt" (keyup)="HorsTaxToTTC($event,i)" (input)="calculTtc(i)">
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>quantite</mat-label>

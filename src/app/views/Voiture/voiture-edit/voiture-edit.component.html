@@ -1,9 +1,9 @@
-<p>voiture-edit works!</p>
+<!--<p>voiture-edit works!</p>
 <p>client-add works!</p>
 <form [formGroup]="VoitureForm" autocomplete="off">
-  <br>
+  <br>-->
   <!--<mat-form-field appearance="outline">-->
-  <mat-form-field>
+  <!--<mat-form-field>
     <input matInput formControlName="matricule" required placeholder="matricule">
     <mat-error>fff</mat-error>
   </mat-form-field><br><br>
@@ -16,7 +16,7 @@
     <mat-error>fff</mat-error>
   </mat-form-field><br><br>
   <mat-form-field>
-    <input matInput formControlName="dateMiseEnCirculation" required placeholder="dateMiseEnCirculation">
+    <input type="date" matInput formControlName="dateMiseEnCirculation" required placeholder="dateMiseEnCirculation">
     <mat-error>fff</mat-error>
   </mat-form-field><br><br>
   <mat-form-field>
@@ -39,3 +39,69 @@
 <button mat-raised-button color="primary" [disabled]="VoitureForm.invalid" (click)="ModifierVoiture()" type="submit">
   Modifier
 </button>
+**************************************************-->
+<div class="col-md-8">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Modifier voiture</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form [formGroup]="VoitureForm" autocomplete="off">
+      <div class="box-body">
+        <!--<mat-form-field appearance="outline">-->
+        <mat-form-field appearance="outline">
+          <mat-label>matricule</mat-label>
+          <input matInput formControlName="matricule" required placeholder="matricule">
+          <mat-error>fff</mat-error>
+        </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <mat-label>marque</mat-label>
+          <input matInput formControlName="type" required placeholder="marque">
+          <mat-error>fff</mat-error>
+        </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <mat-label>modele</mat-label>
+          <input matInput formControlName="modele" required placeholder="modele">
+          <mat-error>fff</mat-error>
+        </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <mat-label>dateMiseEnCirculation</mat-label>
+          <input required type="date" matInput formControlName="dateMiseEnCirculation" required placeholder="dateMiseEnCirculation">
+          <mat-error>fff</mat-error>
+        </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <mat-label>vin</mat-label>
+          <input matInput formControlName="vin" required placeholder="vin" pattern="[A-Z0-9]{17}">
+          <mat-error>Le VIN est composé de 17 caractéres alphanumérique </mat-error>
+        </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <mat-label>kilometrage</mat-label>
+          <input matInput formControlName="kilometrage" required placeholder="kilometrage">
+          <mat-error>fff</mat-error>
+        </mat-form-field><br><br>
+        <mat-form-field appearance="outline" [floatLabel]="'never'">
+          <mat-select formControlName="client" placeholder="client" (openedChange)="clientInput.focus();">
+            <input class="myInput" #clientInput matInput focused="'true'" type="text" (keydown)="$event.stopPropagation()" (keyup)="searchClient($event.target.value);" autocomplete="off" placeholder="search">
+            <mat-divider></mat-divider>
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let item of clientListfiltred" [value]="item.id">{{item.nomPrenom}} : {{item.solde}}</mat-option>
+          </mat-select>
+        </mat-form-field><br><br>
+      </div>
+
+    </form>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <button mat-raised-button color="primary" [disabled]="VoitureForm.invalid" (click)="ModifierVoiture()" type="submit">
+        Modifier
+      </button>
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>
+
+
+

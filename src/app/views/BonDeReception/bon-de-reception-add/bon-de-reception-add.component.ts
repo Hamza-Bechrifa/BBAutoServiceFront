@@ -142,8 +142,9 @@ export class BonDeReceptionAddComponent implements OnInit {
     let tva: number = prixHt * this.detailleBrForms.at(i).get("tva").value / 100;
     let remise: number = prixHt * this.detailleBrForms.at(i).get("remise").value / 100;
 
-    this.detailleBrForms.at(i).patchValue({ "totalTtc": (+prixHt + +tva - +remise) * quantite });
+    this.detailleBrForms.at(i).patchValue({ "totalTtc": ((+prixHt + +tva - +remise) * quantite).toFixed(3) });
   }
+
   changePrix(i, event) {
 
     this.detailleBrForms.at(i).patchValue(
@@ -207,10 +208,25 @@ export class BonDeReceptionAddComponent implements OnInit {
     minutes = now.getMinutes().toString().length === 1 ? '0' + now.getMinutes().toString() : now.getMinutes();
     seconds = now.getSeconds().toString().length === 1 ? '0' + now.getSeconds().toString() : now.getSeconds();
 
-    return year + '-' + month + '-' + date + 'T' + hours + ':' + minutes + ':' + seconds;
+    return year + '-' + month + '-' + date /*+ 'T' + hours + ':' + minutes + ':' + seconds*/;
 
 
 
   }
+ 
+
+  HorsTaxToTTC(event: any, i: number) {
+    console.log("********", event)
+    if (event.code == "F9") {
+      let prixHt: number = this.detailleBrForms.at(i).get("prixHt").value;
+      let tva: number = this.detailleBrForms.at(i).get("tva").value / 100;
+
+      prixHt = prixHt / (1 + tva);
+      console.log(prixHt)
+      this.detailleBrForms.at(i).patchValue({ "prixHt": prixHt.toFixed(3) });
+      this.calculTtc(i);
+    }
+  }
+
 
 }

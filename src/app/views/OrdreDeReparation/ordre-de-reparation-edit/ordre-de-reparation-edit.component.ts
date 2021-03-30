@@ -196,4 +196,18 @@ export class OrdreDeReparationEditComponent implements OnInit {
       (err) => { alert("erreur") });
 
   }
+
+  HorsTaxToTTC(event: any, i: number) {
+    console.log("********", event)
+    if (event.code == "F9") {
+      let prixHt: number = this.detailleOrForms.at(i).get("prixHt").value;
+      let tva: number = this.detailleOrForms.at(i).get("tva").value / 100;
+
+      prixHt = prixHt / (1 + tva);
+      console.log(prixHt)
+      this.detailleOrForms.at(i).patchValue({ "prixHt": prixHt.toFixed(3) });
+      this.calculTtc(i);
+    }
+  }
+
 }
