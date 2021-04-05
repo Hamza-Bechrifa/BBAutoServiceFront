@@ -23,6 +23,9 @@ export class BonDeReceptionService {
   GetByArticle(id) {
     return this.http.get(environment.api_url + '/api/BonDeReceptions/GetByArticle/'+ id);
   }
+  Getdetaille(id) {
+    return this.http.get(environment.api_url + '/api/DetailleBrs/' + id);
+  }
   Edit(data) {
     return this.http.put(environment.api_url + '/api/BonDeReceptions/' + data.id, data);
   }

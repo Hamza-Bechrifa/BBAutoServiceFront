@@ -230,5 +230,11 @@ export class OrdreDeReparationAddComponent implements OnInit {
       this.calculTtc(i);
     }
   }
-
+  getTotalTTC() {
+    let total = 0;
+    this.formData.value.detailleOr.forEach(data =>
+      total += parseFloat(data.totalTtc)
+      )
+    return total.toFixed(3);
+  }
 }
