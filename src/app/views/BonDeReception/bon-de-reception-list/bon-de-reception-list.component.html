@@ -14,12 +14,13 @@
 
     <div class="box-body">
 
-      <table *ngIf="brList" datatable class="table row-border hover">
+      <table *ngIf="brList" datatable [dtOptions]="dtOptions" class="table row-border hover">
         <thead>
           <tr>
 
-            <th>code</th>
+            <th>Date creation</th>
             <th>date</th>
+            <th>code</th>
             <th>fournisseur</th>
             <th>total HT</th>
             <th>total TTC</th>
@@ -28,8 +29,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of brList" (click)="show(item.id)">
-            <td>{{item.code}}</td>
+            <td>{{item.dateCreation}}</td>
             <td>{{item.dateDocument}}</td>
+            <td>{{item.code}}</td>
             <td>{{item.nom}}</td>
             <td>{{item.totalHT}}</td>
             <td>{{item.totalTTC}}</td>

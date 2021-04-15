@@ -62,7 +62,10 @@ export class ReglementClientAddComponent implements OnInit {
   async addReglement() {
     await this.reglementClientService.Add(this.reglementClientForm.value).subscribe(
       data => {
-        this.router.navigate(['/ordreDeReparation/show/' + this.ordreDeReparation.id]);
+        if (this.ordreDeReparation)
+          this.router.navigate(['/ordreDeReparation/show/' + this.ordreDeReparation.id]);
+        else
+          this.router.navigate(['/client/show/' + this.client.id]);
       }
     )
   }

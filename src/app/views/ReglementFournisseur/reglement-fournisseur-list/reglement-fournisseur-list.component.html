@@ -1,1 +1,46 @@
 <p>reglement-fournisseur-list works!</p>
+{{data| json}}
+
+<div class="col-md-12">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">List des Reglements fournisseur</h3>
+      <a [routerLink]="['/ReglementFournisseur/add']" class="btn btn-info pull-right">Ajouter</a>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+
+    <div class="box-body">
+
+      <table *ngIf="data" datatable [dtOptions]="dtOptions" class="table row-border hover">
+        <thead>
+          <tr>
+            <th>date creation</th>
+            <th>date</th>
+            <th>fournisseur</th>
+            <th>montant</th>
+            <th>mode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data" (click)="show(item.id)">
+            <td>{{item.dateOperation }}</td>
+            <td>{{item.dateReglement }}</td>
+            <td>{{item.fournisseur}}</td>
+            <td>{{item.montant | number : '1.3-3'}}</td>
+            <td>{{item.mode}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <!-- /.box-body -->
+    <div class="box-footer">
+
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>

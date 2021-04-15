@@ -9,9 +9,13 @@ import { BonDeReceptionService } from '../../../services/bon-de-reception.servic
 })
 export class BonDeReceptionListComponent implements OnInit {
   brList: any;
-
+  dtOptions =
+    {
+      "order": [0, 'desc']
+    }
   constructor(private router: Router, private bonDeReceptionService: BonDeReceptionService) {
   }
+
 
   ngOnInit() {
 
