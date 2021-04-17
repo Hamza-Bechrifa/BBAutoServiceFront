@@ -23,7 +23,7 @@ export class FournisseurShowComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.fournisseurService.Get(this.id).subscribe(
       data => { this.fournisseur = data },
-      (err) => { alert("erreur get client") });
+      (err) => { alert("erreur get fournisseur") });
 
     this.fournisseurService.getMouvements(this.id).subscribe(
       data => { this.Mouvements = data },
@@ -40,6 +40,9 @@ export class FournisseurShowComponent implements OnInit {
   }
   SetTabToShow(id) {
     this.tabToShow = id;
+  }
+  reglement() {
+    this.router.navigate(['ReglementFournisseur/add', "PF", this.id]);
   }
 
 }

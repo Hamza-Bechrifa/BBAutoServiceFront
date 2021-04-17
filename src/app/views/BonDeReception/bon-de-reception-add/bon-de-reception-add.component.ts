@@ -116,7 +116,7 @@ export class BonDeReceptionAddComponent implements OnInit {
 
       (data: any) => {
         console.log("sucess", data)
-        this.reglementFournisseur.add(
+        this.reglementFournisseur.Add(
           {
             "fournisseur": data.fournisseur,
             "montant": data.totalTtc,

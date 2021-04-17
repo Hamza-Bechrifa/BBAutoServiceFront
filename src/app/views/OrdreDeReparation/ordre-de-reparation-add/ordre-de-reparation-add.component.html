@@ -19,7 +19,7 @@
           <mat-select formControlName="client" placeholder="client" (openedChange)="clientInput.focus();" (selectionChange)="voitureListChange($event)">
             <input class="myInput" #clientInput matInput focused="'true'" type="text" (keydown)="$event.stopPropagation()" (keyup)="searchClient($event.target.value);" autocomplete="off" placeholder="search">
             <mat-divider></mat-divider>
-            <mat-option>None</mat-option>
+            <mat-option value="all">None</mat-option>
             <mat-option *ngFor="let item of clientListfiltred" [value]="item.id">{{item.nomPrenom}} : {{item.solde}}</mat-option>
           </mat-select>
         </mat-form-field>

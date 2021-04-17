@@ -1,1 +1,89 @@
 <p>reglement-fournisseur-add works!</p>
+typedocumet{{typeDocument}}
+<br />
+idDocument{{idDocument}}
+<br />
+fournisseur
+<pre>
+{{fournisseur|json}}
+</pre>
+ordre de reparation
+<pre>
+{{ordreDeReparation|json}}
+</pre>
+form
+<pre>
+{{reglementFournisseurForm.value | json}}
+</pre>
+
+<div class="col-md-8">
+  <div class="box box-info" *ngIf="fournisseur">
+    <div class="box-header with-border">
+      <h3 class="box-title">Nouveau Reglement fournisseur</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form [formGroup]="reglementFournisseurForm" autocomplete="off" class="form-horizontal">
+      <div class="box-body">
+
+
+
+        <mat-form-field appearance="outline">
+          <mat-label>fournisseur</mat-label>
+          <input value="{{fournisseur.nom}}" matInput readonly>
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field appearance="outline">
+          <mat-label>Solde</mat-label>
+          <input value="{{fournisseur.solde  | number : '1.3-3'}}" matInput readonly>
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>montant</mat-label>
+          <input type="number" step="2" matInput formControlName="montant" required placeholder="montant">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-select class="form-control" formControlName="mode">
+            <mat-option value="espece">Espece</mat-option>
+            <mat-option value="cheque">Cheque</mat-option>
+            <mat-option value="retunue">Retunue</mat-option>
+            <mat-option value="remise">Remise</mat-option>
+          </mat-select>
+          <mat-error>fff</mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>Date</mat-label>
+          <input type="date" matInput formControlName="dateReglement" required>
+          <mat-error></mat-error>
+        </mat-form-field>
+        <br />
+
+
+
+
+
+      </div>
+    </form>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <button mat-raised-button class="btn btn-info pull-right" [disabled]="reglementFournisseurForm.invalid" (click)="addReglement()" type="submit">
+        Ajouter
+      </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button *ngIf="typeDocument == 'OR'" mat-raised-button class="btn btn-primary pull-right" [disabled]="reglementFournisseurForm.invalid" (click)="showOR()" type="submit">
+        Imprimer Document
+      </button>
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>
+
+
+

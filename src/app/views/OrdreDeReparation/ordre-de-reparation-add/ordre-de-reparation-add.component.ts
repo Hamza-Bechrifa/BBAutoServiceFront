@@ -155,9 +155,13 @@ export class OrdreDeReparationAddComponent implements OnInit {
   }
 
   voitureListChange(event) {
-    console.log("client:", event);
-    console.log(this.voitureList);
+    //console.log("client:", event);
+    //console.log(this.voitureList);
+    //if (event = "all") {
+    //  this.voitureListFiltred = this.voitureList;
+    //}
     this.voitureListFiltred = this.voitureList.filter(voiture => voiture.client == event.value);
+    
   }
   voitureListdefault() {
     this.voitureListFiltred = this.voitureList;

@@ -9,7 +9,7 @@ export class ReglementFournisseurService {
 
   constructor(private http: HttpClient) { }
 
-  add(data) {
+  Add(data) {
     return this.http.post(environment.api_url + '/api/ReglementFournisseurs', data);
   }
   

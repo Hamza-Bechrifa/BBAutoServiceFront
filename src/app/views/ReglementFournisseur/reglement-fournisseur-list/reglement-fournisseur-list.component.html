@@ -1,5 +1,5 @@
-<p>reglement-fournisseur-list works!</p>
-{{data| json}}
+<!--<p>reglement-fournisseur-list works!</p>
+{{data| json}}-->
 
 <div class="col-md-12">
   <div class="box box-info">
@@ -26,7 +26,7 @@
           <tr *ngFor="let item of data" (click)="show(item.id)">
             <td>{{item.dateOperation }}</td>
             <td>{{item.dateReglement }}</td>
-            <td>{{item.fournisseur}}</td>
+            <td>{{item.nom}}</td>
             <td>{{item.montant | number : '1.3-3'}}</td>
             <td>{{item.mode}}</td>
           </tr>
