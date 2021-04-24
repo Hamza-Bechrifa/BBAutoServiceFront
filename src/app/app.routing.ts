@@ -48,6 +48,10 @@ import { FournisseurListComponent } from './views/Fournisseur/fournisseur-list/f
 import { FournisseurEditComponent } from './views/Fournisseur/fournisseur-edit/fournisseur-edit.component';
 import { FournisseurAddComponent } from './views/Fournisseur/fournisseur-add/fournisseur-add.component';
 import { FournisseurShowComponent } from './views/Fournisseur/fournisseur-show/fournisseur-show.component';
+import { DevisClientListComponent } from './views/DevisClient/devis-client-list/devis-client-list.component';
+import { DevisClientAddComponent } from './views/DevisClient/devis-client-add/devis-client-add.component';
+import { DevisClientShowComponent } from './views/DevisClient/devis-client-show/devis-client-show.component';
+import { DevisClientEditComponent } from './views/DevisClient/devis-client-edit/devis-client-edit.component';
 
 export const routes: Routes = [
 
@@ -160,6 +164,11 @@ export const routes: Routes = [
       { path: 'ordreDeReparation/add', component: OrdreDeReparationAddComponent },
       { path: 'ordreDeReparation/show/:id', component: OrdreDeReparationShowComponent },
       { path: 'ordreDeReparation/edit/:id', component: OrdreDeReparationEditComponent },
+
+      { path: 'devisClient', component: DevisClientListComponent },
+      { path: 'devisClient/add', component: DevisClientAddComponent },
+      { path: 'devisClient/show/:id', component: DevisClientShowComponent },
+      { path: 'devisClient/edit/:id', component: DevisClientEditComponent },
 
       { path: 'BonDeReception', component: BonDeReceptionListComponent },
       { path: 'BonDeReception/add', component: BonDeReceptionAddComponent },

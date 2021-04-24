@@ -1,1 +1,112 @@
 <p>bon-de-reception-edit works!</p>
+{{formData.value |  json}}
+
+<div class="col-md-12">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">MODIFIER BON DE RECEPTION</h3>
+    </div>
+    <!-- /.box-header -->
+
+    <div class="box-body">
+      <form [formGroup]="formData" autocomplete="off">
+
+        <!--<mat-form-field appearance="outline">
+        <mat-label>Reference</mat-label>-->
+
+        <mat-form-field appearance="outline" [floatLabel]="'never'">
+          <mat-select formControlName="fournisseur" placeholder="fournisseur" (openedChange)="fournisseurInput.focus();" (selectionChange)="voitureListChange($event)">
+            <input class="myInput" #fournisseurInput matInput focused="'true'" type="text" (keyup)="searchfournisseur($event.target.value);" autocomplete="off" placeholder="search">
+            <mat-divider></mat-divider>
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let item of fournisseurListfiltred" [value]="item.id">{{item.nom}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+
+        <mat-form-field appearance="outline">
+          <mat-label>date</mat-label>
+          <input type="date" matInput formControlName="date" required placeholder="date">
+          <mat-error>fff</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Code</mat-label>
+          <input matInput formControlName="code" placeholder="code">
+          <mat-error>fff</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>commentaire interne</mat-label>
+          <input matInput formControlName="commentaireInterne" placeholder="commentaireInterne">
+          <mat-error>fff</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>commentaire externe</mat-label>
+          <input matInput formControlName="commentaireExterne" placeholder="commentaireExterne">
+          <mat-error>fff</mat-error>
+        </mat-form-field>
+
+        <div formArrayName="detailleBr">
+
+          <div *ngFor="let item of detailleBrForms.controls; let i=index" [formGroupName]="i" class="">
+
+            <mat-form-field [floatLabel]="'never'">
+              <mat-select required formControlName="article" placeholder="Article" (openedChange)="ArticleInput.focus()" (selectionChange)="changePrix(i,$event);calculTtc(i);articleListdefault()">
+                <input class="myInput" #ArticleInput matInput focused="'true'" type="text" (keyup)="searchArticle($event.target.value)" autocomplete="off" placeholder="search">
+                <mat-divider></mat-divider>
+                <mat-option *ngFor="let item of articleListFiltred" prix="item.prixPublic" [value]="item.id">{{item.reference}} {{item.designation}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>designation</mat-label>
+              <input matInput placeholder="designation" formControlName="designation" readonly>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>prixHt</mat-label>
+              <input type="number" matInput placeholder="prixHt" formControlName="prixHt" (keyup)="HorsTaxToTTC($event,i)" (input)="calculTtc(i)">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>quantite</mat-label>
+              <input matInput placeholder="quantite" formControlName="quantite" (input)="calculTtc(i)">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>remise %</mat-label>
+              <input matInput placeholder="remise" formControlName="remise" (input)="calculTtc(i)">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>TVA</mat-label>
+              <input matInput placeholder="tva" formControlName="tva" (input)="calculTtc(i)">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Total TTC</mat-label>
+              <input matInput readonly placeholder="totalTtc" formControlName="totalTtc" (input)="calculMarge(i)">
+            </mat-form-field>
+
+            <button mat-raised-button color="warn" (click)="deletedetailleBr(i)" class="pull-right">Delete</button>
+
+          </div>
+          <div class="d-flex justify-content-center"><button mat-raised-button color="primary" (click)="adddetailleBr()">Add Product</button></div>
+
+          <br /><br />
+        </div>
+
+      </form>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+
+
+      <button mat-raised-button color="primary" [disabled]="formData.invalid" (click)="Edit()" type="submit">
+        Modifier
+      </button>
+
+    </div>
+    <!-- /.box-footer -->
+
+  </div>
+
+</div>
+
+

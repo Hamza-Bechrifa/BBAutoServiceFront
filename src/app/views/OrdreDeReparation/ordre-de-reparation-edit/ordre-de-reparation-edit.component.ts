@@ -49,8 +49,7 @@ export class OrdreDeReparationEditComponent implements OnInit {
         this.obj['dateDocument'] = this.obj['dateDocument'].substring(0, 10) 
         this.formData.patchValue(this.obj);
       },
-      (err) => { alert("erreur") });
-    
+      (err) => { alert("erreur") });    
     this.articleService.articlesList().subscribe(
       data => {
         this.articleList = data;

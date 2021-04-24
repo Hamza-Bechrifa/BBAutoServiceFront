@@ -68,7 +68,9 @@ export class BonDeReceptionShowComponent implements OnInit {
       }
     )
   }
-edit(){}
+  edit() {
+    this.router.navigate(['/BonDeReception/edit/' + this.id]);
+  }
   PrintElem(elem) {
     var mywindow = window.open('', 'PRINT', 'height=800,width=1200');
 

@@ -128,6 +128,10 @@ import { FournisseurAddComponent } from './views/Fournisseur/fournisseur-add/fou
 import { FournisseurEditComponent } from './views/Fournisseur/fournisseur-edit/fournisseur-edit.component';
 import { FournisseurListComponent } from './views/Fournisseur/fournisseur-list/fournisseur-list.component';
 import { FournisseurShowComponent } from './views/Fournisseur/fournisseur-show/fournisseur-show.component';
+import { DevisClientAddComponent } from './views/DevisClient/devis-client-add/devis-client-add.component';
+import { DevisClientEditComponent } from './views/DevisClient/devis-client-edit/devis-client-edit.component';
+import { DevisClientListComponent } from './views/DevisClient/devis-client-list/devis-client-list.component';
+import { DevisClientShowComponent } from './views/DevisClient/devis-client-show/devis-client-show.component';
 
 
 
@@ -232,6 +236,10 @@ export function HttpLoaderFactory(http:HttpClient){
 
     FabComponent,
     DateSqlPipe,
+    DevisClientAddComponent,
+    DevisClientEditComponent,
+    DevisClientListComponent,
+    DevisClientShowComponent,
    
     
   ],

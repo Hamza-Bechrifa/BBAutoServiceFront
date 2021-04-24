@@ -213,6 +213,7 @@ export class BonDeReceptionAddComponent implements OnInit {
 
 
   }
+
  
 
   HorsTaxToTTC(event: any, i: number) {
