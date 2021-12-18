@@ -264,8 +264,6 @@ if((id=="ADMIN ORGANISME")&&(this.userRole=="ADMIN ORGANISME")){
   }
 
 
-
-
   setMerchant(idMerchant){
     if(this.form.get('role').value=='MERCHANT'){
     let index=0;

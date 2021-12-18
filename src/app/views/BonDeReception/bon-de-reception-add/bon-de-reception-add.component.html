@@ -17,7 +17,7 @@
 
         <mat-form-field appearance="outline" [floatLabel]="'never'">
           <mat-select formControlName="fournisseur" placeholder="fournisseur" (openedChange)="fournisseurInput.focus();" (selectionChange)="voitureListChange($event)">
-            <input class="myInput" #fournisseurInput matInput focused="'true'" type="text" (keyup)="searchfournisseur($event.target.value);" autocomplete="off" placeholder="search">
+            <input class="myInput" #fournisseurInput matInput focused="'true'" type="text" (keydown)="$event.stopPropagation()" (keyup)="searchfournisseur($event.target.value);" autocomplete="off" placeholder="search">
             <mat-divider></mat-divider>
             <mat-option>None</mat-option>
             <mat-option *ngFor="let item of fournisseurListfiltred" [value]="item.id">{{item.nom}}</mat-option>
@@ -55,7 +55,7 @@
 
             <mat-form-field [floatLabel]="'never'">
               <mat-select required formControlName="article" placeholder="Article" (openedChange)="ArticleInput.focus()" (selectionChange)="changePrix(i,$event);calculTtc(i);articleListdefault()">
-                <input class="myInput" #ArticleInput matInput focused="'true'" type="text" (keyup)="searchArticle($event.target.value)" autocomplete="off" placeholder="search">
+                <input class="myInput" #ArticleInput matInput focused="'true'" type="text" (keydown)="$event.stopPropagation()" (keyup)="searchArticle($event.target.value)" autocomplete="off" placeholder="search">
                 <mat-divider></mat-divider>
                 <mat-option *ngFor="let item of articleListFiltred" prix="item.prixPublic" [value]="item.id">{{item.reference}} {{item.designation}}</mat-option>
               </mat-select>
@@ -102,12 +102,13 @@
       <div class="row">
         <div class="col-md-6"></div>
         <div class="col-md-6 text-right">
+          Total TTC: {{getTotalTTC()}}<br />
           <button mat-raised-button class="" color="primary" [disabled]="formData.invalid" (click)="paymentModal.show()" type="button">
             Passer au paiement
           </button>
           <!--<button mat-raised-button class="" color="primary" (click)="paymentModal.show()" type="button">
-            openModal
-          </button>-->
+    openModal
+  </button>-->
         </div>
       </div>
 

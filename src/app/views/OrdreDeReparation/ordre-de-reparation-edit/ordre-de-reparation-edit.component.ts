@@ -155,10 +155,9 @@ export class OrdreDeReparationEditComponent implements OnInit {
   calculTtc(i) {
     let prixHt: number = this.detailleOrForms.at(i).get("prixHt").value;
     let quantite: number = this.detailleOrForms.at(i).get("quantite").value;
-    let tva: number = prixHt * this.detailleOrForms.at(i).get("tva").value / 100;
     let remise: number = prixHt * this.detailleOrForms.at(i).get("remise").value / 100;
-
-    this.detailleOrForms.at(i).patchValue({ "totalTtc": (+prixHt + +tva - +remise) * quantite });
+    let tva: number = (prixHt - remise) * this.detailleOrForms.at(i).get("tva").value / 100;
+    this.detailleOrForms.at(i).patchValue({ "totalTtc": ((+prixHt + +tva - +remise) * quantite).toFixed(3) });
   }
   changePrix(i, event) {
 
@@ -209,4 +208,11 @@ export class OrdreDeReparationEditComponent implements OnInit {
     }
   }
 
+  getTotalTTC() {
+    let total = 0;
+    this.formData.value.detailleOr.forEach(data =>
+      total += parseFloat(data.totalTtc)
+    )
+    return total.toFixed(3);
+  }
 }

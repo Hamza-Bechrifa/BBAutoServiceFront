@@ -57,7 +57,7 @@
               <mat-select required formControlName="article" placeholder="Article" (openedChange)="ArticleInput.focus()" (selectionChange)="changePrix(i,$event);calculTtc(i);articleListdefault()">
                 <input class="myInput" #ArticleInput matInput focused="'true'" type="text" (keydown)="$event.stopPropagation()" (keyup)="searchArticle($event.target.value)" autocomplete="off" placeholder="search">
                 <mat-divider></mat-divider>
-                <mat-option *ngFor="let item of articleListFiltred" prix="item.prixPublic" [value]="item.id">{{item.reference}} {{item.designation}}</mat-option>
+                <mat-option *ngFor="let item of articleListFiltred" prix="item.prixPublic" [value]="item.id">{{item.reference}} {{item.designation}} : {{item.marge}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field appearance="outline">
@@ -97,11 +97,16 @@
     </div>
     <!-- /.box-body -->
     <div class="box-footer">
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6 text-right">
+          Total TTC: {{getTotalTTC()}}<br />
+          <button mat-raised-button color="primary" [disabled]="formData.invalid" (click)="Edit()" type="submit">
+            Modifier
+          </button>
+        </div>
 
-      <button mat-raised-button color="primary" [disabled]="formData.invalid" (click)="Edit()" type="submit">
-        Modifier
-      </button>
-
+      </div>
     </div>
     <!-- /.box-footer -->
 

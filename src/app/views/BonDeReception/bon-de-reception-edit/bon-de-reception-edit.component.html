@@ -1,5 +1,3 @@
-<p>bon-de-reception-edit works!</p>
-{{formData.value |  json}}
 
 <div class="col-md-12">
   <div class="box box-info">
@@ -96,12 +94,17 @@
     </div>
     <!-- /.box-body -->
     <div class="box-footer">
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6 text-right">
+          Total TTC: {{getTotalTTC()}}<br />
 
+          <button mat-raised-button color="primary" [disabled]="formData.invalid" (click)="Edit()" type="submit">
+            Modifier
+          </button>
+        </div>
 
-      <button mat-raised-button color="primary" [disabled]="formData.invalid" (click)="Edit()" type="submit">
-        Modifier
-      </button>
-
+      </div>
     </div>
     <!-- /.box-footer -->
 

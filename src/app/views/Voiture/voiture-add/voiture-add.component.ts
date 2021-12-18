@@ -26,7 +26,7 @@ export class VoitureAddComponent implements OnInit {
       dateMiseEnCirculation: "",
       vin: "",
       kilometrage: 0,
-      client: 0
+      client: ""
 
     });
     this.clientService.clientsList().subscribe(

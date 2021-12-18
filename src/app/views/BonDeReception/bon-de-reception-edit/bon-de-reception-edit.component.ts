@@ -126,9 +126,9 @@ export class BonDeReceptionEditComponent implements OnInit {
   calculTtc(i) {
     let prixHt: number = this.detailleBrForms.at(i).get("prixHt").value;
     let quantite: number = this.detailleBrForms.at(i).get("quantite").value;
-    let tva: number = prixHt * this.detailleBrForms.at(i).get("tva").value / 100;
     let remise: number = prixHt * this.detailleBrForms.at(i).get("remise").value / 100;
-
+    let tva: number = (prixHt - remise) * this.detailleBrForms.at(i).get("tva").value / 100;
+    console.log("prixht", prixHt, "qte", quantite, "tva", tva, "remise", remise)
     this.detailleBrForms.at(i).patchValue({ "totalTtc": ((+prixHt + +tva - +remise) * quantite).toFixed(3) });
   }
 
@@ -243,6 +243,14 @@ export class BonDeReceptionEditComponent implements OnInit {
       },
       err => { alert(err); }
     );
+  }
+
+  getTotalTTC() {
+    let total = 0;
+    this.formData.value.detailleBr.forEach(data =>
+      total += parseFloat(data.totalTtc)
+    )
+    return total.toFixed(3);
   }
 
 }

@@ -61,7 +61,7 @@
               <mat-select required formControlName="article" placeholder="Article" (openedChange)="ArticleInput.focus()" (selectionChange)="changePrix(i,$event);calculTtc(i);articleListdefault()">
                 <input class="myInput" #ArticleInput matInput focused="'true'" type="text" (keydown)="$event.stopPropagation()" (keyup)="searchArticle($event.target.value)" autocomplete="off" placeholder="search">
                 <mat-divider></mat-divider>
-                <mat-option *ngFor="let item of articleListFiltred" prix="item.prixPublic" [value]="item.id">{{item.reference}} {{item.designation}}</mat-option>
+                <mat-option *ngFor="let item of articleListFiltred" prix="item.prixPublic" [value]="item.id">{{item.reference}} {{item.designation}} : {{item.marge}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field appearance="outline">

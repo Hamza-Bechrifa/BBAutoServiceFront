@@ -34,7 +34,7 @@ export class BonDeReceptionAddComponent implements OnInit {
   ngOnInit() {
     this.formData = this.fb.group({
       fournisseur: null,
-      code:"",
+      code: "",
       date: this.datetimeNow(),
       commentaireInterne: "",
       commentaireExterne: "",
@@ -106,14 +106,13 @@ export class BonDeReceptionAddComponent implements OnInit {
       data => {
         console.log("sucess", data)
         this.router.navigate(['BonDeReception/show', data["id"]]);
-       // this.router.navigate(['Reglementfournisseur/add', "BR", data["id"]]);
+        // this.router.navigate(['Reglementfournisseur/add', "BR", data["id"]]);
       },
       err => { alert(err); }
     );
   }
   payerEnEspeceEtImprimer() {
     this.bonDeReceptionService.Add(this.formData.value).subscribe(
-
       (data: any) => {
         console.log("sucess", data)
         this.reglementFournisseur.Add(
@@ -128,20 +127,24 @@ export class BonDeReceptionAddComponent implements OnInit {
             this.router.navigate(['BonDeReception/show', data["id"]]);
           },
           err => {
-
+            console.log(err);
+            alert(err);
           }
         );
       },
-      err => { alert(err); }
+      err => {
+        console.log(err);
+        alert(err);
+      }
     );
   }
 
   calculTtc(i) {
     let prixHt: number = this.detailleBrForms.at(i).get("prixHt").value;
     let quantite: number = this.detailleBrForms.at(i).get("quantite").value;
-    let tva: number = prixHt * this.detailleBrForms.at(i).get("tva").value / 100;
     let remise: number = prixHt * this.detailleBrForms.at(i).get("remise").value / 100;
-
+    let tva: number = (prixHt - remise) * this.detailleBrForms.at(i).get("tva").value / 100;
+    console.log("prixht", prixHt, "qte", quantite, "tva", tva, "remise", remise)
     this.detailleBrForms.at(i).patchValue({ "totalTtc": ((+prixHt + +tva - +remise) * quantite).toFixed(3) });
   }
 
@@ -171,11 +174,12 @@ export class BonDeReceptionAddComponent implements OnInit {
     text = text.toLowerCase()
     let result: string[] = [];
     for (let a of this.fournisseurList) {
-      if (a.nomPrenom.toLowerCase().indexOf(text) > -1) {
+      if (a.nom.toLowerCase().indexOf(text) > -1) {
         result.push(a)
       }
-    }
+    }    
     this.fournisseurListfiltred = result;
+
   }
   searchArticle(text) {
     text = text.toLowerCase()
@@ -214,7 +218,7 @@ export class BonDeReceptionAddComponent implements OnInit {
 
   }
 
- 
+
 
   HorsTaxToTTC(event: any, i: number) {
     console.log("********", event)
@@ -227,6 +231,14 @@ export class BonDeReceptionAddComponent implements OnInit {
       this.detailleBrForms.at(i).patchValue({ "prixHt": prixHt.toFixed(3) });
       this.calculTtc(i);
     }
+  }
+
+  getTotalTTC() {
+    let total = 0;
+    this.formData.value.detailleBr.forEach(data =>
+      total += parseFloat(data.totalTtc)
+    )
+    return total.toFixed(3);
   }
 
 
