@@ -85,7 +85,7 @@ export class OrdreDeReparationAddComponent implements OnInit {
 
     const detailleOr = this.fb.group(
       {
-        "article": 0,
+        "article": null,
         "designation": "",
         "prixHt": 0,
         "quantite": 1,

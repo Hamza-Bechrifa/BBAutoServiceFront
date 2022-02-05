@@ -16,6 +16,7 @@ export class ReglementFournisseurAddComponent implements OnInit {
   typeDocument: any
   ordreDeReparation: any
   fournisseur: any
+  disablebtn = false;
   constructor(private router: Router, private route: ActivatedRoute, private fb: FormBuilder,
     private ordreDeReparationService: OrdreDeReparationService,
     private fournisseurService: FournisseurService,
@@ -60,6 +61,7 @@ export class ReglementFournisseurAddComponent implements OnInit {
     this.router.navigate(['/ordreDeReparation/show/' + this.ordreDeReparation.id]);
   }
   async addReglement() {
+    this.disablebtn = true;
     await this.reglementFournisseurService.Add(this.reglementFournisseurForm.value).subscribe(
       data => {
         if (this.ordreDeReparation)

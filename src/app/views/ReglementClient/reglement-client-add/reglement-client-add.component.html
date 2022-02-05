@@ -72,7 +72,7 @@ form
     </form>
     <!-- /.box-body -->
     <div class="box-footer">
-      <button mat-raised-button class="btn btn-info pull-right" [disabled]="reglementClientForm.invalid" (click)="addReglement()" type="submit">
+      <button mat-raised-button class="btn btn-info pull-right" [disabled]="reglementClientForm.invalid || disablebtn" (click)="addReglement()" type="submit">
         Ajouter
       </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button *ngIf="typeDocument == 'OR'" mat-raised-button class="btn btn-primary pull-right" [disabled]="reglementClientForm.invalid" (click)="showOR()" type="submit">

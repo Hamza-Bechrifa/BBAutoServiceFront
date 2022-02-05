@@ -11,7 +11,7 @@ import { ClientService } from '../../../services/client.service';
   styleUrls: ['./voiture-add.component.scss']
 })
 export class VoitureAddComponent implements OnInit {
-
+  disablebtn = false;
   VoitureForm: any;
   clientList: any;
   clientListfiltred: any;
@@ -51,11 +51,13 @@ export class VoitureAddComponent implements OnInit {
     }
     this.clientListfiltred = result;
   }
-  AjouterVoiture() {
+  AjouterVoiture(event) {
+    this.disablebtn = true;
     this.VoitureService.Add(this.VoitureForm.value).subscribe(
 
       data => {
-        this.router.navigate(['/voiture']);
+        setTimeout(x => { this.router.navigate(['/voiture']);},10000)
+        
       },
       err => { alert(err); }
     );

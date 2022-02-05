@@ -15,7 +15,7 @@ export class ArticleEditComponent implements OnInit {
 
   ngOnInit() {
     this.articleForm = this.fb.group({
-      id:"",
+      id: "",
       reference: "",
       designation: "",
       prixHt: 0,
@@ -26,13 +26,21 @@ export class ArticleEditComponent implements OnInit {
       prixPublic: 0,
       stockInitial: 0,
       stockReel: 0,
-      stockAlerte: 0
+      stockAlerte: 0,
+      type: "",
+      referenceOrigine: "",
+      marque: "",
+      emplacement: ""
     });
     this.articleService.articlesGet(this.route.snapshot.paramMap.get('id')).subscribe(
-      data => {
+      (data: any )=> {
+        console.log(data)
         this.articleForm.patchValue(data
           
         );
+        this.articleForm.patchValue({
+          type : data.type==='true'
+        })
       }
       , err => alert("article inconnue")
     )

@@ -23,10 +23,11 @@
             <th>marge</th>-->
             <th>prixPublic</th>
             <th>stock</th>
+            <th>type</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of articleList" (click)="showArticle(item.id)">
+          <tr *ngFor="let item of articleList" (click)="showArticle(item.id)" [ngStyle]="{'background-color':item.type === 'true' ? 'green' : ''}">
             <td>{{item.reference}}</td>
             <td>{{item.referenceOrigine}}</td>
             <td>{{item.designation}}</td>
@@ -35,6 +36,7 @@
             <td>{{item.tva }}</td>
             <td>{{item.prixPublic | number : '1.3-3'}}</td>
             <td>{{item.stockReel || 0}}</td>
+            <td>{{item.type}}</td>
           </tr>
         </tbody>
       </table>

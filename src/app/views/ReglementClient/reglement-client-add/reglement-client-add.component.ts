@@ -16,6 +16,7 @@ export class ReglementClientAddComponent implements OnInit {
   typeDocument: any
   ordreDeReparation: any
   client: any
+  disablebtn = false;
   constructor(private router: Router, private route: ActivatedRoute, private fb: FormBuilder,
     private ordreDeReparationService: OrdreDeReparationService,
     private clientService: ClientService,
@@ -60,6 +61,7 @@ export class ReglementClientAddComponent implements OnInit {
     this.router.navigate(['/ordreDeReparation/show/' + this.ordreDeReparation.id]);
   }
   async addReglement() {
+    this.disablebtn = true;
     await this.reglementClientService.Add(this.reglementClientForm.value).subscribe(
       data => {
         if (this.ordreDeReparation)
