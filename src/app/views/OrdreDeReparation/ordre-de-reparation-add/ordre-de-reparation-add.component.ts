@@ -21,6 +21,7 @@ export class OrdreDeReparationAddComponent implements OnInit {
   voitureListFiltred: [];
   clientList: any;
   clientListfiltred: any;
+  clicked = false;
   @ViewChild('paymentModal', { static: false }) paymentModal;
   constructor(private router: Router,
     private fb: FormBuilder,
@@ -102,10 +103,11 @@ export class OrdreDeReparationAddComponent implements OnInit {
   }
 
   passerAuPaiement() {
-    this.ordreDeReparationService.Add(this.formData.value).subscribe(
 
+    this.clicked = true;
+    this.ordreDeReparationService.Add(this.formData.value).subscribe(
       data => {
-        console.log("sucess", data)
+        this.clicked = true;
         this.router.navigate(['ReglementClient/add', "OR", data["id"]]);
       },
       err => { alert(err); }
@@ -144,11 +146,17 @@ export class OrdreDeReparationAddComponent implements OnInit {
     this.detailleOrForms.at(i).patchValue({ "totalTtc": ((+prixHt + +tva - +remise) * quantite).toFixed(3) });
   }
   changePrix(i, event) {
-
-    this.detailleOrForms.at(i).patchValue(
-      {
-        "prixHt": this.articleList.filter(a => a.id === event.value)[0]['prixPublic'],
-        "tva": this.articleList.filter(a => a.id === event.value)[0]['tva'],
+    console.log(this.articleList.filter(a => a.id === event.value)[0])
+    let prixPublic = this.articleList.filter(a => a.id === event.value)[0]['prixPublic'];
+    let tva = this.articleList.filter(a => a.id === event.value)[0]['tva'];
+    let prixHt = prixPublic / (1 + tva / 100)
+    console.log(prixPublic)
+    console.log(tva)
+    console.log(prixHt)
+        this.detailleOrForms.at(i).patchValue(
+          {
+            "prixHt": prixHt.toFixed(3),
+        "tva": tva,
         "designation": this.articleList.filter(a => a.id === event.value)[0]['designation'],
       });
   }

@@ -79,7 +79,7 @@
     </mat-form-field><br><br>
     <mat-form-field appearance="outline">
       <mat-label>Solde</mat-label>
-      <input readonly matInput value="{{client.solde}}" required placeholder="Solde">
+      <input readonly matInput value="{{client.solde | number : '1.3-3'}}" required placeholder="Solde">
       <mat-error>ce champ est obligatoire</mat-error>
     </mat-form-field><br><br>
     <button mat-raised-button class="btn btn-info pull-right" color="primary" (click)="edit()" type="submit">

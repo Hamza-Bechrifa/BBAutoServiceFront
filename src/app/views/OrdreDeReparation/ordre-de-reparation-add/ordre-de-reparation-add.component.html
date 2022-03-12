@@ -107,7 +107,7 @@
         <div class="col-md-6"></div>
         <div class="col-md-6 text-right">
           Total TTC: {{getTotalTTC()}}<br />
-          <button mat-raised-button class="" color="primary" [disabled]="formData.invalid" (click)="paymentModal.show()" type="button">
+          <button mat-raised-button class="" color="primary" [disabled]="formData.invalid || clicked" (click)="passerAuPaiement()" type="button">
             Passer au paiement
           </button>
           <!--<button mat-raised-button class="" color="primary" (click)="paymentModal.show()" type="button">

@@ -82,9 +82,14 @@ dd
     <br />
     <mat-form-field appearance="outline">
       <mat-label>Client</mat-label>
-      <input readonly  step="any" matInput value="{{client.nomPrenom}}" required placeholder="Client">
+      <input readonly step="any" matInput value="{{client.nomPrenom}}" required placeholder="Client">
       <mat-error></mat-error>
     </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>contact</mat-label>
+      <input readonly matInput type="text" formControlName="contact" required placeholder="contact">
+      <mat-error>fff</mat-error>
+    </mat-form-field><br><br>
     <br />
 
 

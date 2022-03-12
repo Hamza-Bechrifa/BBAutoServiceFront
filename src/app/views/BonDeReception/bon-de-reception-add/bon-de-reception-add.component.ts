@@ -21,6 +21,7 @@ export class BonDeReceptionAddComponent implements OnInit {
   voitureListFiltred: [];
   fournisseurList: any;
   fournisseurListfiltred: any;
+  clicked = false;
   @ViewChild('paymentModal', { static: false }) paymentModal;
   constructor(private router: Router,
     private fb: FormBuilder,
@@ -101,6 +102,7 @@ export class BonDeReceptionAddComponent implements OnInit {
   }
 
   ImprimerSansPaiement() {
+    this.clicked = true;
     this.bonDeReceptionService.Add(this.formData.value).subscribe(
 
       data => {
@@ -221,7 +223,6 @@ export class BonDeReceptionAddComponent implements OnInit {
 
 
   HorsTaxToTTC(event: any, i: number) {
-    console.log("********", event)
     if (event.code == "F9") {
       let prixHt: number = this.detailleBrForms.at(i).get("prixHt").value;
       let tva: number = this.detailleBrForms.at(i).get("tva").value / 100;

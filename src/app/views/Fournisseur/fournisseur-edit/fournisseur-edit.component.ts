@@ -19,7 +19,8 @@ export class FournisseurEditComponent implements OnInit {
       matriculeFiscale: "",
       telephone: "",
       adresse: "",
-      solde: 0
+      solde: 0,
+      marge: 25
     });
     this.fournisseurService.Get(this.route.snapshot.paramMap.get('id')).subscribe(
       data => {

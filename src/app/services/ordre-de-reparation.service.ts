@@ -10,8 +10,8 @@ export class OrdreDeReparationService {
   constructor(private http: HttpClient) {
   }
 
-  List() {
-    return this.http.get(environment.api_url + '/api/OrdreDeReparations');
+  List(data) {
+    return this.http.post(environment.api_url + '/api/OrdreDeReparations/list' , data);
   }
   Add(data) {
     return this.http.post(environment.api_url + '/api/OrdreDeReparations', data);

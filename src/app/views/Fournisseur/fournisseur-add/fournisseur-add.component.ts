@@ -21,7 +21,8 @@ export class FournisseurAddComponent implements OnInit {
       matriculeFiscale: "",
       telephone: "",
       adresse: "",
-      solde: 0
+      solde: 0,
+      marge:25
     });
 
   }

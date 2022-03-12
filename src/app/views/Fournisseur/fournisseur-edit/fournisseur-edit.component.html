@@ -27,6 +27,11 @@
           <input matInput formControlName="adresse" required placeholder="adresse">
           <mat-error>ce champ est obligatoire</mat-error>
         </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <mat-label>Marge préférentiel</mat-label>
+          <input type="number" step="any" matInput formControlName="marge" required placeholder="marge">
+          <mat-error>ce champ est obligatoire</mat-error>
+        </mat-form-field><br><br>
 
         <button mat-raised-button class="btn btn-info pull-right" color="primary" [disabled]="fournisseurForm.invalid" (click)="ModifierFournisseur()" type="submit">
           Enregistrer

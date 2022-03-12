@@ -60,7 +60,7 @@ export class AddUserComponent implements OnInit {
         magasin:['']
         },
         {
-          validator:[requiredBy('role',['MAGASIN','MERCHANT'],'marchand'),requiredBy('role',['MAGASIN'],'magasin'),requiredBy('role',['SUPERVISEUR','ADMIN ORGANISME','ADMIN MSS'],'organizationId')]
+         // validator:[requiredBy('role',['MAGASIN','MERCHANT'],'marchand'),requiredBy('role',['MAGASIN'],'magasin'),requiredBy('role',['SUPERVISEUR','ADMIN ORGANISME','ADMIN MSS'],'organizationId')]
           //validator:[requiredBy('role','MAGASIN','marchand'),requiredBy('role','MAGASIN','magasin')]
 
     })

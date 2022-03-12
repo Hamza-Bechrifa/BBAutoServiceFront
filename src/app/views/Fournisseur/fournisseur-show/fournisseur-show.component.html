@@ -56,6 +56,11 @@
       <input readonly matInput value="{{fournisseur.solde}}" required placeholder="Solde">
       <mat-error>ce champ est obligatoire</mat-error>
     </mat-form-field><br><br>
+    <mat-form-field appearance="outline">
+      <mat-label>Marge préférentiel</mat-label>
+      <input readonly matInput value="{{fournisseur.marge}}" required placeholder="marge">
+      <mat-error>ce champ est obligatoire</mat-error>
+    </mat-form-field><br><br>
     <button mat-raised-button class="btn btn-info pull-right" color="primary" (click)="edit()" type="submit">
       Modifier
     </button>

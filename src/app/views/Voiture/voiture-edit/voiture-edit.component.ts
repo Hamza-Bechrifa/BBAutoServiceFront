@@ -25,7 +25,8 @@ export class VoitureEditComponent implements OnInit {
       dateMiseEnCirculation: "",
       vin: "",
       kilometrage: 0,
-      client: 0
+      client: 0,
+      contact : ""
 
     });
     this.id = this.route.snapshot.paramMap.get('id');

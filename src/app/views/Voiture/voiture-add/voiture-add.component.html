@@ -46,6 +46,11 @@
             <mat-option *ngFor="let item of clientListfiltred" [value]="item.id">{{item.nomPrenom}} : {{item.solde}}</mat-option>
           </mat-select>
         </mat-form-field><br><br>
+        <mat-form-field appearance="outline">
+          <mat-label>contact</mat-label>
+          <input matInput type="text" formControlName="contact" required placeholder="contact">
+          <mat-error>fff</mat-error>
+        </mat-form-field><br><br>
       </div>
 
     </form>
