@@ -1,4 +1,3 @@
-
 <!--<pre>{{orList| json}}</pre>-->
 
 
@@ -12,27 +11,8 @@
     <!-- form start -->
 
     <div class="box-body">
-      <form [formGroup]="filterForm" autocomplete="off">
 
-
-        <mat-form-field appearance="outline">
-          <mat-label>date debut</mat-label>
-          <input type="date" matInput formControlName="dateDebut" required placeholder="date">
-          <mat-error>fff</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>date fin</mat-label>
-          <input type="date" matInput formControlName="dateFin" required placeholder="date">
-          <mat-error>fff</mat-error>
-        </mat-form-field>
-
-
-      </form>
-      <button mat-raised-button class="" color="primary" [disabled]="filterForm.invalid" (click)="getOrders()" type="button">
-        chercher
-      </button>
-      <table #dataTable datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table row-border hover">
+      <table *ngIf="orList" datatable [dtOptions]="dtOptions" class="table row-border hover">
         <thead>
           <tr>
             <th>date creation</th>
